@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Worker와 LameJS를 활용한 브라우저 멀티스레드 오디오 인코딩 - Batcher Tools</title>
+  <meta name="description" content="웹 브라우저의 메인 UI 스레드 멈춤 없이 백그라운드 Web Worker에서 LameJS를 구동하여 대용량 음원을 초고속 비동기 인코딩하는 기술 원리를 해설합니다." />
+  <meta name="keywords" content="Web Worker 오디오 인코딩, LameJS 브라우저 변환, 멀티스레드 자바스크립트, 비동기 오디오 처리, Web Audio API" />
+  
+  <link rel="canonical" href="https://batchertools.com/guides/web-worker-audio-encoding.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
+  <!-- Structured Data: Article, BreadcrumbList -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Web Worker와 LameJS를 활용한 브라우저 멀티스레드 오디오 인코딩",
+      "description": "Web Worker에서 LameJS를 구동하여 대용량 음원을 초고속 비동기 인코딩하는 기술 원리",
+      "author": {
+        "@type": "Organization",
+        "name": "Batcher Tools"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Batcher Tools",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://batchertools.com/favicon.svg"
+        }
+      },
+      "datePublished": "2026-08-24",
+      "dateModified": "2026-08-24",
+      "mainEntityOfPage": "https://batchertools.com/guides/web-worker-audio-encoding.html"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://batchertools.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "사용 가이드",
+          "item": "https://batchertools.com/guides/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Web Worker 오디오 인코딩",
+          "item": "https://batchertools.com/guides/web-worker-audio-encoding.html"
+        }
+      ]
+    }
+  </script>
+
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0; padding: 0;
+      background-color: #020617; color: #cbd5e1;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.8;
+    }
+    h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #a855f7; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .back-btn:hover { color: #c084fc; }
+    .category-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(168, 85, 247, 0.15); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 9999px; color: #c084fc; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    h1 { font-size: 2.25rem; margin: 0.5rem 0; line-height: 1.3; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .meta { font-size: 0.875rem; color: #64748b; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .card { background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    h2 { font-size: 1.45rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid #a855f7; padding-left: 0.85rem; color: #f8fafc; }
+    h3 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: 0.75rem; color: #e2e8f0; }
+    p, li { font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1; }
+    ul, ol { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #f1f5f9; font-weight: 600; }
+    .highlight-box { background: rgba(168, 85, 247, 0.08); border: 1px solid rgba(168, 85, 247, 0.2); border-radius: 0.875rem; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+    .highlight-box p { margin: 0; color: #e9d5ff; font-weight: 500; font-size: 0.92rem; }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="/guides/index.html" class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>가이드 목록으로 돌아가기</span>
+        </a>
+        <span class="category-badge">오디오 & 웹 개발</span>
+      </div>
+      <h1>Web Worker와 LameJS를 활용한 브라우저 멀티스레드 오디오 인코딩</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar text-purple-400"></i> 최종 갱신: 2026년 8월 24일</span>
+        <span><i class="fa-regular fa-clock text-purple-400"></i> 읽는 시간: 약 7분</span>
+        <span><i class="fa-solid fa-microchip text-purple-400"></i> 엔진: LameJS, Web Audio API</span>
+      </div>
+    </div>
+
+    <article class="card">
+      <p>수백 메가바이트의 오디오 데이터를 MP3로 인코딩하는 연산은 대량의 수학적 푸리에 변환(FFT)과 심리음향 필터링을 포함하여 CPU 소모량이 매우 큽니다. 만약 자바스크립트 메인 스레드에서 이를 실행하면 브라우저 렌더링 엔진이 차단되어 버튼 클릭이 먹히지 않고 프로그레스 바 애니메이션이 멈추게 됩니다.</p>
+
+      <h2>1. Web Worker 비동기 스레드 아키텍처</h2>
+      <p>배처 툴은 메인 UI 스레드와 오디오 인코딩 로직을 <strong>Web Worker</strong>로 완벽하게 격리 분리합니다.</p>
+      <ul>
+        <li><strong>메인 스레드:</strong> 사용자의 드롭존 파일 선택 수신 및 프로그레스 바 UI 업데이트를 60 FPS로 매끄럽게 유지.</li>
+        <li><strong>워커 스레드:</strong> 백그라운드에서 LameJS 인코더 엔진을 돌려 청크 단위로 MP3 바이너리를 인코딩하고 진행률(%) 메시지를 메인 스레드로 전송.</li>
+      </ul>
+
+      <h2>2. ArrayBuffer와 Transferable Objects를 통한 메모리 최적화</h2>
+      <p>대용량 오디오 데이터를 워커로 넘길 때 복사(Copy) 방식을 사용하면 RAM 사용량이 2배로 폭증합니다. 배처 툴은 <code>Transferable Objects</code>를 적용하여 원본 버퍼의 소유권만을 이전함으로써 메모리 누수 없이 대량의 음원을 연속 처리합니다.</p>
+
+      <h2>관련 추천 가이드</h2>
+      <ul>
+        <li><a href="/guides/wav-to-mp3.html" style="color: #c084fc; text-decoration: none; font-weight: 600;">WAV MP3 오디오 변환 실무 가이드</a></li>
+        <li><a href="/guides/audio-bitrate.html" style="color: #c084fc; text-decoration: none; font-weight: 600;">오디오 비트레이트 설정과 주파수 스펙트럼</a></li>
+      </ul>
+    </article>
+
+    <footer>
+      &copy; 2026 Batcher Tools. All rights reserved.
+    </footer>
+  </div>
+</body>
+
+</html>

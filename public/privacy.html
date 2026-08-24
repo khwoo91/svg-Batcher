@@ -4,373 +4,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-ko="개인정보처리방침 - Batcher Tools" data-en="Privacy Policy - Batcher Tools">개인정보처리방침 - Batcher Tools</title>
+  <title>개인정보처리방침 (Privacy Policy) - Batcher Tools</title>
+  <meta name="description" content="배처 툴(Batcher Tools)의 개인정보처리방침입니다. 당사는 사용자의 파일을 서버로 업로드하지 않으며 100% 로컬 브라우저에서 안전하게 처리합니다." />
+  <meta name="keywords" content="개인정보처리방침, Privacy Policy, 로컬 데이터 보안, Batcher Tools 보안" />
+  
+  <link rel="canonical" href="https://batchertools.com/privacy.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
   <style>
-    :root {
-      color-scheme: dark;
-    }
-
+    :root { color-scheme: dark; }
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #020617;
-      color: #cbd5e1;
+      margin: 0; padding: 0;
+      background-color: #020617; color: #cbd5e1;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.7;
+      line-height: 1.8;
     }
-
-    h1,
-    h2,
-    h3 {
-      font-family: 'Outfit', sans-serif;
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 6rem;
-    }
-
-    .header {
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 2rem;
-      margin-bottom: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #818cf8;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .back-btn:hover {
-      color: #a5b4fc;
-    }
-
-    h1 {
-      font-size: 2.25rem;
-      margin: 0.5rem 0;
-      background: linear-gradient(to right, #ffffff, #94a3b8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .meta {
-      font-size: 0.875rem;
-      color: #64748b;
-    }
-
-    .card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 1.25rem;
-      padding: 2.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      border-left: 3px solid #6366f1;
-      padding-left: 0.75rem;
-    }
-
-    h3 {
-      font-size: 1.05rem;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #e2e8f0;
-    }
-
-    p,
-    li {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    ul,
-    ol {
-      margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    .highlight-box {
-      background: rgba(99, 102, 241, 0.08);
-      border: 1px solid rgba(99, 102, 241, 0.15);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      margin: 1.5rem 0;
-    }
-
-    .highlight-box p {
-      margin: 0;
-      color: #a5b4fc;
-      font-weight: 500;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.85rem;
-      color: #475569;
-      border-top: 1px solid #1e293b;
-      padding-top: 2rem;
-    }
-
-    /* Translation Styles */
-    .lang-ko,
-    .lang-en {
-      display: none !important;
-    }
-
-    body.lang-ko-active .lang-ko {
-      display: block !important;
-    }
-
-    body.lang-ko-active span.lang-ko,
-    body.lang-ko-active strong.lang-ko,
-    body.lang-ko-active a.lang-ko {
-      display: inline !important;
-    }
-
-    body.lang-en-active .lang-en {
-      display: block !important;
-    }
-
-    body.lang-en-active span.lang-en,
-    body.lang-en-active strong.lang-en,
-    body.lang-en-active a.lang-en {
-      display: inline !important;
-    }
-
-    .lang-selector {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      background: rgba(30, 41, 59, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 0.5rem;
-      padding: 0.25rem 0.5rem;
-    }
-
-    .lang-btn {
-      background: none;
-      border: none;
-      color: #64748b;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      transition: all 0.2s;
-    }
-
-    .lang-btn:hover {
-      color: #cbd5e1;
-    }
-
-    .lang-btn.active {
-      color: #818cf8;
-      background: rgba(99, 102, 241, 0.15);
-    }
-
-    .lang-divider {
-      color: #334155;
-      font-size: 0.8rem;
-    }
+    h1, h2, h3 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #818cf8; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .back-btn:hover { color: #a5b4fc; }
+    h1 { font-size: 2.25rem; margin: 0.5rem 0; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .meta { font-size: 0.875rem; color: #64748b; }
+    .card { background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    h2 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.75rem; border-left: 4px solid #6366f1; padding-left: 0.85rem; color: #f8fafc; }
+    p, li { font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1; }
+    ul { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #f1f5f9; font-weight: 600; }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
   </style>
-  <script>
-    function setLanguage(lang) {
-      localStorage.setItem('batcher-lang', lang);
-      document.body.className = lang === 'ko' ? 'lang-ko-active' : 'lang-en-active';
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-      });
-      
-      const titleEl = document.querySelector('title');
-      if (titleEl) {
-        titleEl.textContent = lang === 'ko' ? titleEl.getAttribute('data-ko') : titleEl.getAttribute('data-en');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      let lang = localStorage.getItem('batcher-lang');
-      if (!lang) {
-        lang = navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en';
-      }
-      setLanguage(lang);
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          setLanguage(btn.getAttribute('data-lang'));
-        });
-      });
-    });
-  </script>
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-content">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <a href="/" class="back-btn">
           <i class="fa-solid fa-arrow-left"></i>
-          <span class="lang-ko">Batcher 도구로 돌아가기</span>
-          <span class="lang-en">Back to Batcher Tools</span>
+          <span>메인 홈으로 돌아가기</span>
         </a>
-        <div class="lang-selector">
-          <button class="lang-btn" data-lang="ko">KO</button>
-          <span class="lang-divider">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
       </div>
-      <h1>
-        <span class="lang-ko">개인정보처리방침</span>
-        <span class="lang-en">Privacy Policy</span>
-      </h1>
+      <h1>개인정보처리방침 (Privacy Policy)</h1>
       <div class="meta">
-        <span class="lang-ko">최종 개정일: 2026년 6월 29일</span>
-        <span class="lang-en">Effective Date: June 29, 2026</span>
+        <span>시행일자: 2026년 8월 1일 | 최종 개정: 2026년 8월 24일</span>
       </div>
     </div>
 
-    <div class="card">
-      <!-- KOREAN CONTENT -->
-      <div class="lang-ko">
-        <p>본 방침은 '배처 툴(Batcher Tools)' (이하 '서비스')의 이용자가 제공하는 개인정보의 처리 방식 및 보호 조치에 대한 안내입니다. 본 서비스는 이용자의 개인정보 및 프라이버시 권리를 매우 소중하게 생각하며 관련 법령을 준수하고 있습니다.</p>
+    <article class="card">
+      <p>배처 툴(Batcher Tools, 이하 '서비스')은 이용자의 개인정보 및 데이터 프라이버시를 매우 소중하게 생각하며, 관련 법령을 준수하기 위해 최선을 다하고 있습니다.</p>
 
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-shield-halved"></i> <strong>중요 확인 사항:</strong> 배처 툴은 완전한 웹 브라우저 로컬(Client-side) 실행 도구입니다. 귀하가 변환 및 가공을 위해 불러오거나 대기열에 추가한 어떠한 파일(SVG 이미지, WAV/MP3 오디오, 텍스트 등)과 변경할 파일명 데이터도 외부 서버로 업로드되지 않으며, 모든 프로세스는 귀하의 디바이스 내 브라우저 환경에서만 안전하게 직접 수행됩니다.</p>
-        </div>
+      <h2>1. 무저장 및 제로 업로드 원칙 (Zero-Upload Architecture)</h2>
+      <p>본 서비스는 클라이언트 사이드 웹 애플리케이션으로, 사용자가 변환하거나 이름을 변경하기 위해 선택한 어떠한 파일(SVG, WAV, MP3, 텍스트 등)도 당사의 원격 서버로 전송하지 않습니다. 모든 바이너리 디코딩, 인코딩, 리네이밍 작업은 사용자의 PC 웹 브라우저 메모리 내부에서만 100% 로컬로 처리됩니다.</p>
 
-        <h2>1. 개인정보의 수집 항목 및 수집 방법</h2>
-        <p>본 서비스는 웹 서버로 어떠한 사용자 식별 데이터나 작업 대상 파일의 상세 정보 및 바이너리 데이터를 전송하거나 수집하지 않습니다. 다만, 서비스 정상 운영 및 고도화, 타겟형 광고 송출을 위해 다음과 같은 자동 수집 항목 및 제3자 분석 도구가 활용될 수 있습니다.</p>
-        <ul>
-          <li><strong>자동 수집 항목</strong>: 접속 IP 주소, 브라우저 종류 및 운영체제 정보, 쿠키(Cookie), 서비스 방문 및 이용 기록 (페이지 뷰 등)</li>
-          <li><strong>수집 방법</strong>: 웹 브라우저 자동 생성을 통한 수집 및 타사 광고 파트너사(구글 애드센스 등) 모듈의 쿠키 연동</li>
-        </ul>
+      <h2>2. 수집하는 정보 및 이용 목적</h2>
+      <p>당사는 서비스 품질 개선 및 방문 통계 분석을 위해 Google Analytics와 같은 표준 웹 분석 도구를 사용할 수 있습니다. 이 과정에서 익명화된 브라우저 종류, 방문 페이지, 접속 시간 등의 통계 데이터가 수집될 수 있으나, 어떠한 개인 식별 정보나 로컬 파일 정보도 수집되지 않습니다.</p>
 
-        <h2>2. 개인정보의 이용 목적</h2>
-        <p>자동 수집된 범용 데이터는 다음 목적으로만 활용됩니다.</p>
-        <ul>
-          <li><strong>광고 제공 및 수익화</strong>: 구글 애드센스(Google AdSense) 플랫폼을 활용한 맞춤형/비맞춤형 광고 게재</li>
-          <li><strong>접속 분석 및 통계</strong>: 웹사이트 방문자 트래픽 모니터링 및 성능 모니터링</li>
-        </ul>
+      <h2>3. 쿠키(Cookie) 및 로컬 스토리지(LocalStorage) 사용</h2>
+      <p>당사는 사용자가 설정한 선호 언어(KO/EN), 다크/라이트 테마, 직전 선택한 비트레이트 및 배율 옵션을 브라우저에 저장하여 다음 방문 시 편리한 환경을 제공하기 위해 브라우저의 <code>LocalStorage</code>를 활용합니다. 이 데이터는 사용자 기기에만 보관됩니다.</p>
 
-        <h2>3. 제3자 제공 및 광고용 쿠키 수집 (구글 애드센스)</h2>
-        <p>본 서비스는 타사 광고 제공업체인 <strong>Google</strong>을 통해 광고를 게재합니다.</p>
-        <ul>
-          <li>Google은 쿠키를 사용하여 사용자가 본 사이트 또는 다른 사이트를 방문한 내역을 기반으로 사용자에게 맞춤 광고를 제공합니다.</li>
-          <li>Google의 DART 쿠키 사용을 원치 않는 경우, Google 광고 및 콘텐츠 네트워크 개인정보처리방침에 방문하여 관련 쿠키 수집 설정을 해제(Opt-out)하실 수 있습니다.</li>
-          <li>사용자는 각 브라우저의 옵션을 변경함으로써 타사 광고 파트너의 쿠키 수집 및 맞춤형 광고 게재 목적의 식별 정보를 거부할 수 있습니다.</li>
-        </ul>
+      <h2>4. 제3자 광고 서비스 (Google AdSense)</h2>
+      <p>본 서비스는 웹사이트 운영 지원을 위해 Google AdSense 광고를 게재할 수 있습니다. Google을 포함한 타사 공급업체는 쿠키를 사용하여 사용자의 이전 웹사이트 방문 기록을 바탕으로 맞춤형 광고를 제공할 수 있습니다. 사용자는 Google 광고 설정에서 맞춤 광고를 선택 해제할 수 있습니다.</p>
 
-        <h2>4. 쿠키(Cookie)의 설치·운영 및 그 거부에 관한 사항</h2>
-        <p>귀하는 쿠키 설치에 대한 선택권을 가지고 있습니다. 브라우저 설정을 변경하여 모든 쿠키를 허용하거나, 쿠키가 저장될 때마다 확인을 거치거나, 모든 쿠키의 저장을 거부할 수 있습니다.</p>
-        <h3>쿠키 설정 거부 방법 (예: Chrome의 경우)</h3>
-        <ol>
-          <li>웹 브라우저 오른쪽 상단의 설정(세로 점 3개) 메뉴로 이동합니다.</li>
-          <li>'개인정보 및 보안' -> '서드파티 쿠키' 설정을 선택합니다.</li>
-          <li>원하는 수준의 쿠키 차단 설정을 지정합니다.</li>
-        </ol>
-        <p class="meta">* 단, 쿠키 설치를 전면 거부할 경우 일부 맞춤형 광고 노출이 제한되거나 웹 편의 서비스 이용에 지장이 생길 수 있습니다.</p>
-
-        <h2>5. 데이터의 안전성 확보 조치</h2>
-        <p>본 서비스는 파일 변환 및 이름 일괄 변경 등의 핵심 프로세스를 원격 서버가 아닌 사용자의 브라우저 단에서 완전 처리(Client-side Only)하게 설계함으로써, 개인 제작 이미지, 음원 데이터, 그리고 파일 이름 정보의 외부 유출 위험을 원천 차단하고 있습니다. 이를 통해 사용자가 적재하고 가공한 원본 데이터에 대해 가장 높은 수준의 프라이버시 보호를 보장하고 있습니다.</p>
-
-        <h2>6. 개인정보 보호 책임자 및 문의처</h2>
-        <p>이용자는 서비스를 이용하며 발생하는 모든 개인정보 보호 관련 민원을 아래의 담당자 연락처로 문의하실 수 있습니다. 신속하고 성실하게 답변해 드리겠습니다.</p>
-        <ul>
-          <li>개인정보담당 연락 이메일: <strong>playnolang@naver.com</strong></li>
-        </ul>
-      </div>
-
-      <!-- ENGLISH CONTENT -->
-      <div class="lang-en">
-        <p>This privacy policy describes how 'Batcher Tools' (hereinafter referred to as the 'Service') handles the personal information of users and the protective measures in place. We value your privacy and comply with relevant personal data protection laws.</p>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-shield-halved"></i> <strong>Important Note:</strong> Batcher Tools is a 100% local (Client-side) utility tool that runs directly in your web browser. Any files (SVG images, WAV/MP3 audio, text, etc.) or filenames that you load or queue for processing are never uploaded to any external server. All operations occur entirely inside your browser sandbox.</p>
-        </div>
-
-        <h2>1. Collection of Personal Information & Methods</h2>
-        <p>This service does not send or store any user identification data, file details, or binary file data to any web server. However, to operate the site, optimize the service, and serve advertisements, the following automated data may be collected via third-party analytics and ad modules (such as Google AdSense):</p>
-        <ul>
-          <li><strong>Automatically Collected Items</strong>: IP address, browser type, operating system, cookies, page views, and access times.</li>
-          <li><strong>Collection Method</strong>: Automated browser cookie collection and tracking by third-party advertisement partners.</li>
-        </ul>
-
-        <h2>2. Purpose of Using Personal Information</h2>
-        <p>The automatically collected statistics are used for the following purposes only:</p>
-        <ul>
-          <li><strong>Advertising and Monetization</strong>: Serving personalized or non-personalized ads through the Google AdSense platform.</li>
-          <li><strong>Analytics and Statistics</strong>: Traffic analysis and performance monitoring to improve the website experience.</li>
-        </ul>
-
-        <h2>3. Third-party Provision & Advertising Cookies (Google AdSense)</h2>
-        <p>This service serves advertisements through third-party ad vendors, including <strong>Google</strong>.</p>
-        <ul>
-          <li>Google uses cookies to serve ads to users based on their visits to this site and other sites on the Internet.</li>
-          <li>Users can opt out of the use of the DART cookie by visiting the Google Ad and Content Network privacy policy.</li>
-          <li>Users can block third-party cookies or change cookie tracking settings in their web browser preferences.</li>
-        </ul>
-
-        <h2>4. Cookie Settings & Opt-Out Methods</h2>
-        <p>You have the right to accept or refuse cookies. You can configure your browser to accept all cookies, notify you when a cookie is placed, or refuse all cookies.</p>
-        <h3>How to Disable Cookies (e.g., in Google Chrome)</h3>
-        <ol>
-          <li>Click the settings icon (three vertical dots) in the upper right corner of your browser.</li>
-          <li>Select 'Privacy and Security' -> 'Third-party cookies'.</li>
-          <li>Choose your preferred cookie blocking option.</li>
-        </ol>
-        <p class="meta">* Note: Refusing cookies entirely may limit some personalized ad experiences or affect certain web convenience features.</p>
-
-        <h2>5. Technical and Administrative Security Measures</h2>
-        <p>By processing all file conversions and renaming completely on the client side (Client-side Only), the service fundamentally eliminates the risk of file or data leaks. We ensure the highest level of privacy protection for the user's data.</p>
-
-        <h2>6. Privacy Officer & Contact</h2>
-        <p>If you have any questions, feedback, or complaints regarding personal privacy, please reach out to us at:</p>
-        <ul>
-          <li>Email: <strong>playnolang@naver.com</strong></li>
-        </ul>
-      </div>
-    </div>
+      <h2>5. 문의처</h2>
+      <p>개인정보처리방침에 관한 질문이나 의견이 있으신 경우 <a href="mailto:support@batchertools.com" style="color: #818cf8; font-weight: 600;">support@batchertools.com</a>으로 연락해 주시기 바랍니다.</p>
+    </article>
 
     <footer>
       &copy; 2026 Batcher Tools. All rights reserved.

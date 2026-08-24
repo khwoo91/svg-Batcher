@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="ko" class="h-full bg-slate-950 text-slate-100">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>SVG PNG JPG 변환기 | 대용량 SVG 벡터 이미지 일괄 변환 툴 - Batcher Tools</title>
+  <meta name="description" content="웹 브라우저 내부에서 100% 로컬로 대량의 SVG 벡터 이미지를 1.0x, 1.5x, 2.0x(@2x), 3.0x(@3x) 고화질 PNG/JPG로 즉시 일괄 변환합니다. 서버 업로드 없는 완전한 보안 무료 이미지 변환기." />
+  <meta name="keywords" content="SVG PNG 변환, SVG JPG 변환, SVG 일괄 변환, SVG 래스터화, 레티나 2x 변환, SVG 대량 변환기, 무료 로컬 이미지 변환, SVG 투명 배경 변환" />
+
+  <link rel="canonical" href="https://batchertools.com/svg-to-png.html" />
+  <link rel="alternate" hreflang="x-default" href="https://batchertools.com/svg-to-png.html" />
+  <link rel="alternate" hreflang="ko" href="https://batchertools.com/svg-to-png.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  <meta name="robots" content="index, follow" />
+  <meta name="naver-site-verification" content="47fb2bf78aa36dadf64ff87e8c513c4680212366" />
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
+  <meta property="og:title" content="SVG PNG JPG 변환기 | 대용량 SVG 벡터 이미지 일괄 변환 - Batcher Tools" />
+  <meta property="og:description" content="서버 업로드 없이 브라우저 로컬에서 안전하게 대량의 SVG 파일을 고해상도 PNG/JPG 및 레티나 배율(@2x, @3x)로 변환하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://batchertools.com/svg-to-png.html" />
+  <meta property="og:image" content="https://batchertools.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="ko_KR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="SVG PNG JPG 변환기 | 대용량 SVG 벡터 이미지 일괄 변환 - Batcher Tools" />
+  <meta name="twitter:description" content="서버 업로드 없이 브라우저 로컬에서 안전하게 대량의 SVG 파일을 고해상도 PNG/JPG 및 레티나 배율(@2x, @3x)로 변환하세요." />
+  <meta name="twitter:image" content="https://batchertools.com/og-image.png" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KFDQ1NJZG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-1KFDQ1NJZG');
+  </script>
+
+  <!-- JSON-LD Structured Data: WebApplication, FAQPage, HowTo -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Batcher Tools SVG to PNG/JPG Converter",
+      "url": "https://batchertools.com/svg-to-png.html",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "All modern browsers (Chrome, Edge, Firefox, Safari)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "KRW"
+      },
+      "description": "클라이언트 사이드 브라우저 메모리에서 100% 로컬로 대량의 SVG 벡터 파일을 고해상도 PNG/JPG 및 레티나 배율(@2x, @3x)로 일괄 변환하는 무료 웹 도구"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "SVG 벡터 이미지를 PNG 비트맵으로 변환해야 하는 이유는 무엇인가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "SVG(Scalable Vector Graphics)는 해상도에 구애받지 않는 XML 기반 벡터 규격이지만, 모바일 앱 네이티브 UI(iOS, Android), 게임 엔진, 이메일 템플릿, 구형 웹 브라우저에서는 픽셀 기반 래스터 이미지(PNG/JPG)만 렌더링할 수 있습니다. 또한 복잡한 SVG 파일은 브라우저 렌더링 시 CPU/GPU 연산 부담이 커져 성능 저하를 유발하므로 정적 비트맵으로 변환하여 사용하는 것이 권장됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "레티나 고해상도 배율(@1.5x, @2x, @3x) 설정이 왜 필요한가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "현대 스마트폰과 고해상도 모니터는 1인치당 픽셀 수가 많은 고밀도(High-DPI) 디스플레이를 사용합니다. 일반 1.0x 배율로만 변환된 이미지를 고해상도 화면에 표시하면 픽셀이 확대되면서 아이콘과 그래픽이 흐릿하게 뭉개집니다. 배처 툴에서는 1.5x, 2.0x(@2x), 3.0x(@3x) 등 다중 배율을 한 번에 설정하여 모든 디스플레이 규격에 최적화된 선명한 에셋 세트를 즉시 일괄 추출할 수 있습니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "SVG의 투명 배경(Alpha Channel)이 PNG 변환 시에도 완벽히 유지되나요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "네, PNG 포맷으로 변환 시 32비트 알파 채널(투명도 정보)이 100% 온전히 보존됩니다. 반면 용량을 극단적으로 줄여야 하는 사진이나 배경 일러스트의 경우 JPG 포맷을 선택할 수 있으며, 이 경우 투명 영역은 깨끗한 흰색 배경으로 자동 처리됩니다."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "배처 툴에서 수백 장의 대용량 SVG를 변환할 때 보안과 속도는 어떤가요?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "배처 툴은 모든 변환 작업을 100% 사용자의 PC 웹 브라우저 로컬 메모리(HTML5 Canvas 및 Web API)에서 처리합니다. 외부 서버로 이미지가 단 1바이트도 전송되지 않으므로 미공개 디자인이나 기밀 에셋의 유출 위험이 원천 차단되며, 네트워크 업로드/다운로드 지연 시간 없이 수백 장의 파일을 초고속으로 일괄 변환합니다."
+          }
+        }
+      ]
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "name": "대량의 SVG 파일을 고화질 PNG 또는 JPG로 일괄 변환하는 방법",
+      "description": "설치 프로그램 없이 웹 브라우저에서 대량의 SVG 파일을 고해상도 PNG/JPG로 한 번에 변환하는 3단계 가이드입니다.",
+      "step": [
+        {
+          "@type": "HowToStep",
+          "name": "SVG 파일 또는 폴더 불러오기",
+          "text": "변환할 SVG 파일들을 브라우저 화면의 드롭존으로 끌어다 놓거나, '폴더 선택' 버튼을 클릭하여 작업 대상 디렉토리를 로드합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "내보내기 포맷 및 배율 옵션 설정",
+          "text": "출력 포맷(PNG 또는 JPG)을 선택하고, 필요한 해상도 배율(1.0x, 1.5x, 2.0x 레티나 등)과 파일명 접미사를 지정합니다."
+        },
+        {
+          "@type": "HowToStep",
+          "name": "일괄 변환 시작 및 결과물 저장",
+          "text": "'변환 시작' 버튼을 누르면 브라우저 로컬에서 즉시 렌더링되며, 변환된 고화질 이미지들을 개별 파일 또는 압축된 ZIP 패키지로 다운로드합니다."
+        }
+      ]
+    }
+  </script>
+
+  <link rel="stylesheet" href="./src/index.css" />
+  <script type="module" src="/src/batcher-app.ts"></script>
+</head>
+
+<body class="h-full">
+  <!-- Dynamic Ambient Glow Background Spots -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-[100px] animate-glow-indigo"></div>
+    <div class="absolute top-1/3 left-1/4 w-125 h-125 bg-purple-500/5 rounded-full blur-[130px] animate-glow-purple"></div>
+    <div class="absolute -bottom-40 -right-40 w-112.5 h-112.5 bg-emerald-500/5 rounded-full blur-[120px] animate-glow-emerald"></div>
+  </div>
+
+  <!-- Lit Component Container (Active Tab: SVG) -->
+  <batcher-app class="block min-h-screen relative z-20"></batcher-app>
+
+  <!-- Deep Content & SEO Article Section for SVG to PNG/JPG Converter -->
+  <main class="max-w-5xl mx-auto px-6 pt-12 pb-24 relative z-10 font-sans">
+    
+    <!-- Hero Introduction -->
+    <header class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-4">
+        <i class="fa-solid fa-file-image"></i>
+        <span>High-Performance SVG Rasterizer</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-100 tracking-tight mb-4">
+        대량 SVG 고화질 PNG & JPG 일괄 변환 가이드
+      </h1>
+      <p class="text-slate-400 text-base max-w-2xl mx-auto leading-relaxed">
+        서버 업로드 없이 100% 브라우저 메모리 안에서 안전하게 구동되는 차세대 벡터 래스터라이저. 디자이너와 프론트엔드 개발자를 위한 다중 배율(@2x, @3x) 일괄 추출 가이드입니다.
+      </p>
+    </header>
+
+    <!-- Key Advantages Grid -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md">
+        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 text-xl">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <h2 class="text-lg font-bold text-slate-100 mb-2">다중 배율(@2x, @3x) 일괄 생성</h2>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          클릭 한 번으로 1.0x 표준, 1.5x HDPI, 2.0x 레티나, 3.0x 고해상도 이미지 에셋을 동시에 일괄 추출하여 파일명 접미사까지 자동 완성합니다.
+        </p>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4 text-xl">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <h2 class="text-lg font-bold text-slate-100 mb-2">100% 제로 업로드 로컬 보안</h2>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          외부 클라우드 서버로 단 1개의 파일도 전송하지 않습니다. HTML5 Canvas와 로컬 CPU 파워만 사용하여 기업 기밀 및 미공개 에셋을 완벽 보호합니다.
+        </p>
+      </div>
+
+      <div class="glass-panel p-6 rounded-2xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md">
+        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4 text-xl">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <h2 class="text-lg font-bold text-slate-100 mb-2">초고속 대용량 폴더 처리</h2>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          수백 개의 SVG 파일이 포함된 대규모 프로젝트 폴더를 통째로 로드하여 대기열에서 실시간 진행 상황을 확인하며 즉시 변환합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- In-Depth Technical Content Section -->
+    <article class="glass-panel p-8 sm:p-12 rounded-3xl border border-slate-800/80 bg-slate-900/40 backdrop-blur-md mb-16 space-y-10 text-slate-300 text-sm leading-relaxed">
+      
+      <div>
+        <h2 class="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
+          <i class="fa-solid fa-circle-info text-indigo-400 text-lg"></i>
+          1. SVG 벡터와 PNG/JPG 래스터 포맷의 기술적 차이와 변환 필요성
+        </h2>
+        <p class="mb-3">
+          <strong>SVG(Scalable Vector Graphics)</strong>는 W3C에서 제정한 XML 기반의 2차원 벡터 그래픽 표준 규격입니다. 점과 선, 베지어 곡선, 색상 좌표 등의 수학적 수식으로 도형을 정의하기 때문에 아무리 확대하거나 축소해도 픽셀이 깨지지 않는 무한 해상도를 자랑합니다.
+        </p>
+        <p class="mb-3">
+          하지만 모바일 앱 환경(iOS의 `Assets.xcassets`, Android의 `res/drawable-xxhdpi`), 게임 엔진(Unity, Unreal), 메일 템플릿 및 소셜 미디어(OpenGraph 메타 이미지) 등 다양한 플랫폼에서는 벡터 수식을 실시간 렌더링하는 데 따른 연산 비용을 줄이기 위해 정적 비트맵 포맷인 <strong>PNG(Portable Network Graphics)</strong> 또는 <strong>JPG(JPEG)</strong>를 기본 규격으로 요구합니다.
+        </p>
+        <p>
+          따라서 디자이너가 피그마(Figma)나 일러스트레이터(Illustrator)에서 작업한 고화질 원본 SVG 마스터 에셋을 실제 배포 및 빌드 파이프라인에 투입하기 위해서는 정확한 픽셀 단위로 래스터화(Rasterization)하는 변환 과정이 필수적입니다.
+        </p>
+      </div>
+
+      <div class="border-t border-slate-800/80 pt-8">
+        <h2 class="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
+          <i class="fa-solid fa-mobile-screen text-indigo-400 text-lg"></i>
+          2. 모바일 앱과 웹 환경을 위한 레티나 배율(@2x, @3x) 추출 전략
+        </h2>
+        <p class="mb-3">
+          최신 스마트폰과 태블릿, 고해상도 노트북 디스플레이는 일반적인 96 DPI 모니터 대비 2배에서 3배 이상의 픽셀 밀도를 탑재하고 있습니다. 이러한 고밀도 디스플레이(레티나, Retina)에서 기본 1.0x 규격의 비트맵 이미지를 출력하면 화면 확대 렌더링 알고리즘에 의해 가장자리 경계면이 흐려지는 블러 현상이 발생합니다.
+        </p>
+        <div class="bg-slate-950/60 p-5 rounded-2xl border border-slate-800 mb-4">
+          <h3 class="text-slate-200 font-bold text-sm mb-2">플랫폼별 대표적인 해상도 배율 표준</h3>
+          <ul class="list-disc pl-5 space-y-1.5 text-xs text-slate-400">
+            <li><strong>1.0x (표준 밀도):</strong> 일반 웹 브라우저 표준 및 레거시 디스플레이 기본 에셋 (`icon.png`)</li>
+            <li><strong>1.5x (HDPI):</strong> 중저가형 모바일 디바이스 및 웹 태블릿 환경 대응 (`icon@1.5x.png`)</li>
+            <li><strong>2.0x (@2x, XHDPI):</strong> Apple Retina 디스플레이 및 표준 스마트폰 UI 에셋 (`icon@2x.png`)</li>
+            <li><strong>3.0x (@3x, XXHDPI):</strong> 초고해상도 플래그십 스마트폰 및 4K 고화질 그래픽 에셋 (`icon@3x.png`)</li>
+          </ul>
+        </div>
+        <p>
+          배처 툴(Batcher Tools)은 사용자가 지정한 배율 설정에 맞추어 SVG 내부의 `viewBox`와 `width`/`height` 속성을 정밀하게 계산하고, HTML5 오프스크린 캔버스에 고품질 스케일링 필터를 적용하여 1픽셀의 왜곡도 없는 완벽한 고해상도 에셋을 대량으로 생성합니다.
+        </p>
+      </div>
+
+      <div class="border-t border-slate-800/80 pt-8">
+        <h2 class="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
+          <i class="fa-solid fa-lock text-indigo-400 text-lg"></i>
+          3. 100% 클라이언트 사이드(Client-Side) 렌더링의 강력한 보안 원리
+        </h2>
+        <p class="mb-3">
+          기존의 많은 무료 온라인 이미지 변환 서비스들은 사용자가 업로드한 그래픽 파일을 원격 클라우드 서버로 전송한 뒤 백엔드 툴(ImageMagick, Inkscape CLI 등)로 변환하여 다운로드 링크를 제공합니다. 이 과정에서 다음과 같은 치명적인 위험이 존재합니다:
+        </p>
+        <ol class="list-decimal pl-5 space-y-1.5 text-xs text-slate-400 mb-4">
+          <li><strong>기밀 유출 리스크:</strong> 미발표 신제품 UI 디자인, 기업 독점 로고, 저작권 보호 일러스트가 외부 서버 로그에 영구 또는 임시 보관될 수 있습니다.</li>
+          <li><strong>네트워크 대역폭 낭비 및 지연:</strong> 수백 메가바이트의 에셋을 서버로 업로드하고 다시 다운로드받아야 하므로 인터넷 속도에 따라 작업 시간이 크게 지연됩니다.</li>
+        </ol>
+        <p>
+          반면 배처 툴은 최신 웹 표준 기술인 <strong>WICG File System Access API</strong>와 <strong>Blob URL / HTML5 Canvas 2D Context</strong>를 직접 활용합니다. 모든 파일 I/O와 그래픽 렌더링이 당신의 웹 브라우저 로컬 샌드박스 내부에서만 실행되므로 <strong>네트워크 연결이 끊긴 오프라인 상태에서도 완벽하게 동작</strong>하며, 어떠한 개인 정보나 디자인 데이터도 외부로 유출되지 않습니다.
+        </p>
+      </div>
+
+      <div class="border-t border-slate-800/80 pt-8">
+        <h2 class="text-2xl font-bold text-slate-100 mb-4 flex items-center gap-3">
+          <i class="fa-solid fa-list-check text-indigo-400 text-lg"></i>
+          4. 3단계 초간단 대량 변환 워크플로우
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+          <div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800">
+            <span class="text-indigo-400 font-extrabold text-sm block mb-1">STEP 01</span>
+            <strong class="text-slate-200 block mb-1 text-sm">에셋 불러오기</strong>
+            <p class="text-slate-400">파일 드롭존에 SVG 파일을 끌어다 놓거나 상단 '폴더 선택' 버튼을 눌러 디렉토리를 통째로 로드합니다.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800">
+            <span class="text-indigo-400 font-extrabold text-sm block mb-1">STEP 02</span>
+            <strong class="text-slate-200 block mb-1 text-sm">포맷 & 배율 지정</strong>
+            <p class="text-slate-400">출력 포맷(PNG/JPG)과 목표 배율(1.0x ~ 3.0x), 파일명 접미사 규칙(@2x 등)을 원하는 대로 설정합니다.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950/40 border border-slate-800">
+            <span class="text-indigo-400 font-extrabold text-sm block mb-1">STEP 03</span>
+            <strong class="text-slate-200 block mb-1 text-sm">원클릭 변환 & 내보내기</strong>
+            <p class="text-slate-400">'변환 시작'을 누르면 실시간 프로그레스 바와 함께 즉시 결과물이 생성되어 ZIP 압축 또는 로컬 폴더에 저장됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- FAQ Accordion Section -->
+    <section class="max-w-3xl mx-auto mb-20">
+      <h2 class="text-2xl font-extrabold text-slate-100 mb-3 text-center tracking-tight">
+        자주 묻는 질문 (FAQ)
+      </h2>
+      <p class="text-slate-400 text-xs text-center mb-8">
+        SVG 변환 및 고화질 에셋 추출 시 궁금한 사항들을 확인해 보세요.
+      </p>
+
+      <div class="border-t border-b border-slate-800 divide-y divide-slate-800">
+        <details class="group" open>
+          <summary class="text-base font-semibold text-slate-100 py-5 px-1 flex items-center justify-between cursor-pointer list-none focus:outline-none select-none hover:text-indigo-400 transition-colors">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-circle-question text-indigo-400 text-sm"></i> SVG를 PNG로 변환하면 투명 배경(Alpha Channel)이 유지되나요?
+            </span>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs transition-transform duration-200 group-open:rotate-180"></i>
+          </summary>
+          <div class="px-1 pb-5 text-slate-300 text-xs leading-relaxed">
+            <p>네, PNG 포맷으로 변환할 경우 원본 SVG에 포함된 투명 배경 및 반투명 그라데이션 알파 채널이 100% 온전히 유지됩니다. 반대로 JPG 포맷으로 변환할 경우 투명 영역은 표준 규격에 따라 자동으로 흰색 배경으로 채워집니다.</p>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary class="text-base font-semibold text-slate-100 py-5 px-1 flex items-center justify-between cursor-pointer list-none focus:outline-none select-none hover:text-indigo-400 transition-colors">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-circle-question text-indigo-400 text-sm"></i> 피그마(Figma)나 일러스트레이터에서 내보낸 SVG가 변환 시 잘리거나 깨지면 어떻게 하나요?
+            </span>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs transition-transform duration-200 group-open:rotate-180"></i>
+          </summary>
+          <div class="px-1 pb-5 text-slate-300 text-xs leading-relaxed space-y-2">
+            <p>디자인 툴에서 SVG를 내보낼 때 `viewBox` 속성이 누락되었거나 폰트 텍스트가 패스(Outline)로 변환되지 않은 경우 발생할 수 있습니다. 피그마에서 SVG를 익스포트할 때 'Include "id" Attribute' 옵션을 켜고, 텍스트 레이어는 `Ctrl + Shift + O`를 눌러 아웃라인으로 윤곽선 변환한 뒤 내보내시면 완벽하게 렌더링됩니다.</p>
+            <p>자세한 내용은 당사 <a href="/guides/figma-illustrator-svg-export-troubleshooting.html" class="text-indigo-400 hover:underline font-bold">피그마/일러스트레이터 SVG 에셋 오류 해결 가이드</a>를 참고하세요.</p>
+          </div>
+        </details>
+
+        <details class="group">
+          <summary class="text-base font-semibold text-slate-100 py-5 px-1 flex items-center justify-between cursor-pointer list-none focus:outline-none select-none hover:text-indigo-400 transition-colors">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-circle-question text-indigo-400 text-sm"></i> 변환된 결과물 파일의 상업적 이용 및 라이선스 제약이 있나요?
+            </span>
+            <i class="fa-solid fa-chevron-down text-slate-500 text-xs transition-transform duration-200 group-open:rotate-180"></i>
+          </summary>
+          <div class="px-1 pb-5 text-slate-300 text-xs leading-relaxed">
+            <p>어떠한 라이선스 제약이나 워터마크, 비용 청구가 없습니다. 배처 툴을 이용해 변환된 모든 파일의 저작권과 소유권은 100% 사용자에게 귀속되며, 상업적 웹사이트 구축, 유료 모바일 앱 배포, 게임 리소스 출시 등 모든 상업적 용도로 자유롭게 활용하실 수 있습니다.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Internal Linking Navigation -->
+    <nav class="pt-8 border-t border-slate-800 flex flex-wrap items-center justify-between gap-4 text-xs">
+      <a href="/" class="text-indigo-400 hover:text-indigo-300 font-bold flex items-center gap-1.5">
+        <i class="fa-solid fa-house"></i> 메인 홈으로 이동
+      </a>
+      <div class="flex items-center gap-4 text-slate-400">
+        <a href="/wav-to-mp3.html" class="hover:text-slate-200 transition-colors">WAV to MP3 변환기</a>
+        <span class="text-slate-800">|</span>
+        <a href="/batch-rename.html" class="hover:text-slate-200 transition-colors">대량 파일명 일괄 변경</a>
+        <span class="text-slate-800">|</span>
+        <a href="/guides/index.html" class="hover:text-slate-200 transition-colors">전체 가이드 허브</a>
+      </div>
+    </nav>
+
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 text-left text-xs text-slate-500 pb-36 relative z-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div>
+        <p>&copy; 2026 Batcher Tools. All rights reserved.</p>
+        <p class="text-slate-600 mt-1">모든 이미지 변환 및 리사이징은 사용자의 웹 브라우저 메모리 안에서 100% 로컬로 안전하게 처리됩니다.</p>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400 font-medium flex-wrap">
+        <a href="/about.html" class="hover:text-indigo-400 transition-colors">소개</a>
+        <span class="text-slate-800">|</span>
+        <a href="/guides/index.html" class="hover:text-indigo-400 transition-colors">사용 가이드</a>
+        <span class="text-slate-800">|</span>
+        <a href="/contact.html" class="hover:text-indigo-400 transition-colors">문의하기</a>
+        <span class="text-slate-800">|</span>
+        <a href="/privacy.html" class="hover:text-indigo-400 transition-colors">개인정보처리방침</a>
+        <span class="text-slate-800">|</span>
+        <a href="/terms.html" class="hover:text-indigo-400 transition-colors">이용약관</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

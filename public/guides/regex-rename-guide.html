@@ -4,257 +4,193 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-ko="[기술 블로그] 정규식(Regex)을 활용한 대량 파일명 일괄 변경 패턴 및 가이드 - Batcher Tools" data-en="[Tech Blog] Advanced Regex Batch File Renaming Patterns & Practical Guide - Batcher Tools">[기술 블로그] 정규식(Regex)을 활용한 대량 파일명 일괄 변경 패턴 및 가이드 - Batcher Tools</title>
-  <meta name="description" content="정규표현식(Regex)과 캡처 그룹($1, $2)을 활용하여 수백 수천 개의 파일 이름을 수초 만에 안전하고 체계적으로 일괄 변경하는 실전 규칙 패턴 가이드입니다." />
+  <title>정규표현식(Regex)을 이용한 대량 파일 이름 일괄 변경 가이드 - Batcher Tools</title>
+  <meta name="description" content="정규표현식(Regular Expression)의 캡처 그룹과 패턴 매칭을 활용하여 복잡한 규칙의 파일명을 1초 만에 일괄 치환하고 재구성하는 실전 튜토리얼입니다." />
+  <meta name="keywords" content="정규식 파일 리네이밍, 정규표현식 파일명 변경, Regex Batch Rename, 정규식 캡처 그룹, 파일명 정규식 치환" />
+  
   <link rel="canonical" href="https://batchertools.com/guides/regex-rename-guide.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
+  <!-- Structured Data: Article, BreadcrumbList -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "정규표현식(Regex)을 이용한 대량 파일 이름 일괄 변경 가이드",
+      "description": "정규표현식의 캡처 그룹과 패턴 매칭을 활용하여 복잡한 규칙의 파일명을 일괄 치환하는 실전 튜토리얼",
+      "author": {
+        "@type": "Organization",
+        "name": "Batcher Tools"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Batcher Tools",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://batchertools.com/favicon.svg"
+        }
+      },
+      "datePublished": "2026-08-01",
+      "dateModified": "2026-08-24",
+      "mainEntityOfPage": "https://batchertools.com/guides/regex-rename-guide.html"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://batchertools.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "사용 가이드",
+          "item": "https://batchertools.com/guides/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "정규식 파일 리네이밍 가이드",
+          "item": "https://batchertools.com/guides/regex-rename-guide.html"
+        }
+      ]
+    }
+  </script>
+
   <style>
     :root { color-scheme: dark; }
-    body { margin: 0; padding: 0; background-color: #020617; color: #cbd5e1; font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.8; }
-    h1, h2, h3 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
-    .container { max-width: 840px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
-    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
-    .header-content { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #818cf8; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
-    .back-btn:hover { color: #a5b4fc; }
-    h1 { font-size: 2rem; margin: 0.5rem 0; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .meta { font-size: 0.875rem; color: #64748b; display: flex; gap: 1.5rem; }
-    .card { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
-    h2 { font-size: 1.4rem; color: #818cf8; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.5rem; }
-    h3 { font-size: 1.15rem; color: #f1f5f9; margin-top: 1.5rem; }
-    p { margin-bottom: 1.2rem; }
-    ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
-    li { margin-bottom: 0.5rem; }
-    code { font-family: 'Fira Code', monospace; background: rgba(30, 41, 59, 0.8); color: #38bdf8; padding: 0.2rem 0.4rem; border-radius: 0.25rem; font-size: 0.875rem; }
-    pre { font-family: 'Fira Code', monospace; background: #090d16; border: 1px solid #1e293b; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; color: #e2e8f0; font-size: 0.875rem; }
-    .highlight-box { background: rgba(99, 102, 241, 0.08); border-left: 4px solid #6366f1; padding: 1.25rem; border-radius: 0 0.75rem 0.75rem 0; margin: 1.5rem 0; }
-    .table-container { overflow-x: auto; margin: 1.5rem 0; }
-    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
-    th { background: #0f172a; color: #818cf8; padding: 0.75rem 1rem; border: 1px solid #1e293b; }
-    td { padding: 0.75rem 1rem; border: 1px solid #1e293b; }
-    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
-    .lang-ko, .lang-en { display: none !important; }
-    body.lang-ko-active .lang-ko { display: block !important; }
-    body.lang-ko-active span.lang-ko, body.lang-ko-active strong.lang-ko, body.lang-ko-active a.lang-ko { display: inline !important; }
-    body.lang-en-active .lang-en { display: block !important; }
-    body.lang-en-active span.lang-en, body.lang-en-active strong.lang-en, body.lang-en-active a.lang-en { display: inline !important; }
-    .lang-selector { display: inline-flex; align-items: center; gap: 0.25rem; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.5rem; padding: 0.25rem 0.5rem; }
-    .lang-btn { background: none; border: none; color: #64748b; cursor: pointer; font-size: 0.8rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 0.25rem; transition: all 0.2s; }
-    .lang-btn:hover { color: #cbd5e1; }
-    .lang-btn.active { color: #818cf8; background: rgba(99, 102, 241, 0.15); }
-    .lang-divider { color: #334155; font-size: 0.8rem; }
-  </style>
-  <script>
-    function setLanguage(lang) {
-      localStorage.setItem('batcher-lang', lang);
-      document.body.className = lang === 'ko' ? 'lang-ko-active' : 'lang-en-active';
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
-      const titleEl = document.querySelector('title');
-      if (titleEl) titleEl.textContent = lang === 'ko' ? titleEl.getAttribute('data-ko') : titleEl.getAttribute('data-en');
+    body {
+      margin: 0; padding: 0;
+      background-color: #020617; color: #cbd5e1;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.8;
     }
-    document.addEventListener('DOMContentLoaded', () => {
-      let lang = localStorage.getItem('batcher-lang') || (navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en');
-      setLanguage(lang);
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
-    });
-  </script>
+    h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #ec4899; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .back-btn:hover { color: #f472b6; }
+    .category-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 9999px; color: #f472b6; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    h1 { font-size: 2.25rem; margin: 0.5rem 0; line-height: 1.3; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .meta { font-size: 0.875rem; color: #64748b; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .card { background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    h2 { font-size: 1.45rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid #ec4899; padding-left: 0.85rem; color: #f8fafc; }
+    h3 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: 0.75rem; color: #e2e8f0; }
+    p, li { font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1; }
+    ul, ol { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #f1f5f9; font-weight: 600; }
+    code { font-family: 'Fira Code', monospace; background: rgba(30, 41, 59, 0.8); color: #38bdf8; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-size: 0.875rem; }
+    .highlight-box { background: rgba(236, 72, 153, 0.08); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 0.875rem; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+    .highlight-box p { margin: 0; color: #fbcfe8; font-weight: 500; font-size: 0.92rem; }
+    .code-example { background: #0b0f19; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0 1.5rem; font-family: 'Fira Code', monospace; font-size: 0.85rem; color: #94a3b8; }
+    .code-example .row { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    .code-example .val { color: #34d399; }
+    .tool-cta { background: linear-gradient(135deg, rgba(236, 72, 153, 0.15), rgba(99, 102, 241, 0.15)); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 1rem; padding: 1.75rem; margin: 2.5rem 0; text-align: center; }
+    .tool-cta h3 { margin-top: 0; font-size: 1.25rem; }
+    .tool-cta a { display: inline-flex; align-items: center; gap: 0.5rem; background: #ec4899; color: #ffffff; padding: 0.75rem 1.5rem; border-radius: 0.75rem; font-weight: 700; text-decoration: none; margin-top: 1rem; transition: background 0.2s; font-size: 0.9rem; }
+    .tool-cta a:hover { background: #db2777; }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-content">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <a href="/guides/index.html" class="back-btn">
           <i class="fa-solid fa-arrow-left"></i>
-          <span class="lang-ko">가이드 목록으로 돌아가기</span>
-          <span class="lang-en">Back to Guides</span>
+          <span>가이드 목록으로 돌아가기</span>
         </a>
-        <div class="lang-selector">
-          <button class="lang-btn" data-lang="ko">KO</button>
-          <span class="lang-divider">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
+        <span class="category-badge">파일 관리 & 정규식</span>
       </div>
-      <h1>
-        <span class="lang-ko">[기술 블로그] 정규식(Regex)을 활용한 대량 파일명 일괄 변경 패턴 및 실전 가이드</span>
-        <span class="lang-en">[Tech Blog] Advanced Regex Batch File Renaming Patterns & Practical Guide</span>
-      </h1>
+      <h1>정규표현식(Regex)을 이용한 대량 파일 이름 일괄 변경 가이드</h1>
       <div class="meta">
-        <span><i class="fa-solid fa-calendar"></i> <span class="lang-ko">발행일: 2026-08-03</span><span class="lang-en">Published: 2026-08-03</span></span>
-        <span><i class="fa-solid fa-user"></i> <span class="lang-ko">작성자: Batcher Tools 엔지니어링 팀</span><span class="lang-en">Author: Batcher Tools Engineering</span></span>
+        <span><i class="fa-regular fa-calendar text-pink-400"></i> 최종 갱신: 2026년 8월 24일</span>
+        <span><i class="fa-regular fa-clock text-pink-400"></i> 읽는 시간: 약 7분</span>
+        <span><i class="fa-solid fa-code text-pink-400"></i> 대상: 개발자, 데이터 관리자</span>
       </div>
     </div>
 
-    <div class="card">
-      <!-- KOREAN CONTENT -->
-      <div class="lang-ko">
-        <p>수백 개의 사진, 비디오, 음원, 소스 코드 파일의 이름을 다룰 때 단순한 '찾아 바꾸기'만으로는 한계에 부딪히게 됩니다. 예를 들어 `IMG_20260803_123456.jpg` 형태의 날짜 텍스트를 `2026-08-03_IMG_123456.jpg`로 변경하거나, 파일명 중간에 위치한 불필요한 대괄호 태그(`[HD]`, `[4K]`)를 일괄 제거하는 작업은 단순한 접두사/접미사 추가만으로 불가능합니다.</p>
+    <article class="card">
+      <p>단순한 단어 치환(Search & Replace) 기능만으로는 날짜 순서를 뒤바꾸거나, 특정 패턴의 숫자만 추출하거나, 불규칙한 구분 기호를 일괄 정리하기 어렵습니다. 이럴 때 <strong>정규표현식(Regular Expression, Regex)</strong>을 활용하면 아무리 복잡하고 까다로운 파일 이름 패턴이라도 단 한 줄의 수식으로 완벽히 재구성할 수 있습니다.</p>
 
-        <p>이러한 복잡한 파일명 정리 작업에 필요한 핵심 도구가 바로 <strong>정규 표현식(Regular Expression, Regex)</strong>입니다. 본 기술 블로그에서는 배처 툴(Batcher Tools)의 이름 변경 탭에서 활용 가능한 대표적인 정규식 패턴과 실전 응용법을 상세히 다룹니다.</p>
-
-        <h2>1. 정규표현식이란 무엇인가?</h2>
-        <p>정규표현식은 특정한 규칙을 가진 문자열의 집합을 표현하는 데 사용되는 형식 언어입니다. 일반적인 찾아 바꾸기가 고정된 텍스트("apple" -> "banana")만 매칭하는 반면, 정규식은 "4자리 숫자 뒤에 오일 하이픈과 2자리 숫자가 오는 구조"와 같은 <strong>패턴(Pattern)</strong>을 감지할 수 있습니다.</p>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-lightbulb"></i> <strong>배처 툴에서의 정규식 지원:</strong> 배처 툴의 '문자열 치환(Replace)' 규칙 옵션에서 [정규식 사용] 체크박스를 활성화하면 자바스크립트 엔진 기반의 강력한 정규식 치환 기능이 동작합니다.</p>
-        </div>
-
-        <h2>2. 실무에서 가장 자주 쓰이는 필수 정규식 패턴 5선</h2>
-
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>목적</th>
-                <th>검색 패턴 (Search Regex)</th>
-                <th>치환 패턴 (Replace Pattern)</th>
-                <th>변경 전후 예시</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>날짜 위치 변경</strong></td>
-                <td><code>(\d{4})-(\d{2})-(\d{2})_(.*)</code></td>
-                <td><code>$1_$2_$3_$4</code></td>
-                <td><code>2026-08-03_photo.jpg</code> &rarr;<br><code>2026_08_03_photo.jpg</code></td>
-              </tr>
-              <tr>
-                <td><strong>대괄호 태그 삭제</strong></td>
-                <td><code>\[.*?\]\s*</code></td>
-                <td><em>(빈 값)</em></td>
-                <td><code>[HD] [Final] sample.mp4</code> &rarr;<br><code>sample.mp4</code></td>
-              </tr>
-              <tr>
-                <td><strong>특수문자 통일</strong></td>
-                <td><code>[\s\-_]+</code></td>
-                <td><code>_</code></td>
-                <td><code>my  file - name--v2.png</code> &rarr;<br><code>my_file_name_v2.png</code></td>
-              </tr>
-              <tr>
-                <td><strong>숫자 부분 보존</strong></td>
-                <td><code>.*?(\d+).*</code></td>
-                <td><code>item_$1</code></td>
-                <td><code>IMG_0042_final.jpg</code> &rarr;<br><code>item_0042.jpg</code></td>
-              </tr>
-              <tr>
-                <td><strong>소문자 및 뱀체(snake_case)화</strong></td>
-                <td><code>([a-z])([A-Z])</code></td>
-                <td><code>$1_$2</code></td>
-                <td><code>camelCaseName.js</code> &rarr;<br><code>camel_Case_Name.js</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>3. 캡처 그룹(Capturing Group)과 백레퍼런스($1, $2)의 원리</h2>
-        <p>정규식의 가장 위력적인 기능은 소괄호 `()`를 사용하여 매칭된 특정 부위를 묶어두는 <strong>캡처 그룹</strong>입니다.</p>
-        <p>예를 들어 검색 패턴으로 <code>([0-9]{4})_([a-zA-Z]+)</code>를 입력하면:</p>
-        <ul>
-          <li>첫 번째 괄호 <code>([0-9]{4})</code>에 걸린 4자리 숫자가 변수 <code>$1</code>에 저장됩니다.</li>
-          <li>두 번째 괄호 <code>([a-zA-Z]+)</code>에 걸린 영문자가 변수 <code>$2</code>에 저장됩니다.</li>
-        </ul>
-        <p>치환할 문자열 항목에 <code>$2_$1</code>이라고 작성하면 원래 순서였던 "숫자_문자" 구조가 "문자_숫자" 순서로 완벽하게 뒤바뀌게 됩니다.</p>
-
-        <h2>4. 배처 툴에서 안전하게 정규식 적용하는 3단계 순서</h2>
-        <ol>
-          <li>배처 툴 메인 화면의 <strong>'이름 변경'</strong> 탭으로 이동한 후 로컬 디렉토리 폴더를 연결합니다.</li>
-          <li>'규칙 추가' 메뉴에서 <strong>'문자열 치환'</strong> 항목을 선택하고 <strong>'정규식(Regex) 사용'</strong>을 체크합니다.</li>
-          <li>검색창과 치환창에 정규식을 입력한 후 우측 대기열의 **'변경될 파일명' 실시간 미리보기**를 확인합니다. 완벽히 매칭되었다면 '규칙 적용' 및 '이름 변경 적용'을 클릭합니다.</li>
-        </ol>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-shield-halved"></i> <strong>안전장치:</strong> 실수로 잘못된 정규식을 입력하여 이름이 꼬이더라도 'Undo(실행 취소)' 버튼이나 'Reset(전체 복원)' 버튼을 눌러 언제든지 안전하게 원본 상태로 복구할 수 있습니다.</p>
-        </div>
+      <div class="highlight-box">
+        <p><i class="fa-solid fa-lightbulb"></i> <strong>핵심 개념:</strong> 괄호 <code>()</code>를 사용해 그룹을 묶고, 치환 문자열에서 <code>$1</code>, <code>$2</code> 백레퍼런스(Backreference)를 사용하면 캡처된 텍스트의 순서를 자유자재로 재배치할 수 있습니다.</p>
       </div>
 
-      <!-- ENGLISH CONTENT -->
-      <div class="lang-en">
-        <p>When organizing hundreds of image, video, audio, or codebase files, standard string search-and-replace often falls short. For instance, converting dates formatted like `IMG_20260803_123456.jpg` to `2026-08-03_IMG_123456.jpg`, or stripping away bracketed metadata tags like `[HD]` and `[4K]` requires more than simple prefixing.</p>
+      <h2>1. 실무에서 가장 많이 쓰이는 정규식 패턴 4선</h2>
 
-        <p>The core solution for complex bulk renaming is <strong>Regular Expressions (Regex)</strong>. This technical blog covers fundamental patterns and practical guides for using Regex inside Batcher Tools.</p>
-
-        <h2>1. What is Regular Expression (Regex)?</h2>
-        <p>A Regular Expression is a specialized sequence of characters that defines a search pattern. Unlike basic search matching that checks literal text, Regex matches flexible structures such as "a 4-digit number followed by a hyphen and two digits".</p>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-lightbulb"></i> <strong>Regex in Batcher Tools:</strong> Enabling the [Use Regex] option in the Replace rule panel unlocks client-side Javascript Regex parsing.</p>
-        </div>
-
-        <h2>2. Top 5 Essential Regex Patterns for File Renaming</h2>
-
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>Use Case</th>
-                <th>Search Regex</th>
-                <th>Replace Pattern</th>
-                <th>Before / After Example</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Reorder Date Format</strong></td>
-                <td><code>(\d{4})-(\d{2})-(\d{2})_(.*)</code></td>
-                <td><code>$1_$2_$3_$4</code></td>
-                <td><code>2026-08-03_photo.jpg</code> &rarr;<br><code>2026_08_03_photo.jpg</code></td>
-              </tr>
-              <tr>
-                <td><strong>Strip Bracket Tags</strong></td>
-                <td><code>\[.*?\]\s*</code></td>
-                <td><em>(Empty)</em></td>
-                <td><code>[HD] [Final] sample.mp4</code> &rarr;<br><code>sample.mp4</code></td>
-              </tr>
-              <tr>
-                <td><strong>Unify Separators</strong></td>
-                <td><code>[\s\-_]+</code></td>
-                <td><code>_</code></td>
-                <td><code>my  file - name--v2.png</code> &rarr;<br><code>my_file_name_v2.png</code></td>
-              </tr>
-              <tr>
-                <td><strong>Extract Digits Only</strong></td>
-                <td><code>.*?(\d+).*</code></td>
-                <td><code>item_$1</code></td>
-                <td><code>IMG_0042_final.jpg</code> &rarr;<br><code>item_0042.jpg</code></td>
-              </tr>
-              <tr>
-                <td><strong>Camel to Snake Case</strong></td>
-                <td><code>([a-z])([A-Z])</code></td>
-                <td><code>$1_$2</code></td>
-                <td><code>camelCaseName.js</code> &rarr;<br><code>camel_Case_Name.js</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <h2>3. Capturing Groups & Backreferences ($1, $2)</h2>
-        <p>Capturing groups use parentheses `()` to store matched sub-patterns into backreference variables.</p>
-        <p>For example, using search pattern <code>([0-9]{4})_([a-zA-Z]+)</code> stores:</p>
-        <ul>
-          <li>The matched 4-digit number into variable <code>$1</code></li>
-          <li>The matched trailing letters into variable <code>$2</code></li>
-        </ul>
-        <p>Setting the replacement to <code>$2_$1</code> cleanly swaps the target pattern order in real time.</p>
-
-        <h2>4. 3-Step Safe Regex Execution Workflow</h2>
-        <ol>
-          <li>Open the <strong>'Batch Rename'</strong> tab in Batcher Tools and mount your local directory.</li>
-          <li>Add a <strong>'Replace'</strong> rule and check the <strong>'Use Regex'</strong> box.</li>
-          <li>Enter search/replace patterns and inspect the **'New Name' live preview column**. Click 'Apply Rename' once verified.</li>
-        </ol>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-shield-halved"></i> <strong>Failsafe:</strong> If an unintended Regex pattern alters filenames incorrectly, click 'Undo' or 'Reset' to instantly restore original filenames on disk.</p>
-        </div>
+      <h3>1) 날짜 포맷 순서 재정렬 (YYYY-MM-DD -> YYYY_MM_DD)</h3>
+      <p>연-월-일 사이에 들어간 하이픈을 언더스코어로 통일하거나, 일-월-연 순서(DD-MM-YYYY)를 표준 규격으로 변경할 때 유용합니다.</p>
+      <div class="code-example">
+        <div>검색 패턴 (Regex): <span class="val">(\d{4})-(\d{2})-(\d{2})</span></div>
+        <div>치환 패턴 (Replace): <span class="val">$1_$2_$3</span></div>
+        <div style="margin-top: 0.5rem; color: #64748b;">결과: <code>2026-08-24_log.txt</code> -> <code>2026_08_24_log.txt</code></div>
       </div>
-    </div>
+
+      <h3>2) 대괄호 및 태그 텍스트 일괄 삭제</h3>
+      <p>다운로드한 미디어 파일에 포함된 <code>[HD]</code>, <code>[720p]</code>, <code>[1080p]</code> 등의 불필요한 태그를 통째로 지웁니다.</p>
+      <div class="code-example">
+        <div>검색 패턴 (Regex): <span class="val">\[.*?\]\s*</span></div>
+        <div>치환 패턴 (Replace): <span class="val">(빈 칸으로 둠)</span></div>
+        <div style="margin-top: 0.5rem; color: #64748b;">결과: <code>[HD] sample_video.mp4</code> -> <code>sample_video.mp4</code></div>
+      </div>
+
+      <h3>3) 연속된 공백 및 특수문자를 언더스코어(_)로 통일</h3>
+      <p>웹 서버 업로드 시 URL 인코딩 에러를 유발하는 스페이스(공백)와 특수기호를 깔끔한 언더스코어로 정리합니다.</p>
+      <div class="code-example">
+        <div>검색 패턴 (Regex): <span class="val">[\s\-_]+</span></div>
+        <div>치환 패턴 (Replace): <span class="val">_</span></div>
+        <div style="margin-top: 0.5rem; color: #64748b;">결과: <code>my   cool - photo 01.jpg</code> -> <code>my_cool_photo_01.jpg</code></div>
+      </div>
+
+      <h3>4) 파일명 뒤에 붙은 중복 복사본 번호 정리</h3>
+      <p>윈도우에서 복사 시 자동 생성되는 <code>- 복사본 (2)</code>, <code> (1)</code> 등의 텍스트를 제거합니다.</p>
+      <div class="code-example">
+        <div>검색 패턴 (Regex): <span class="val">\s*[-_]?\s*복사본(\s*\(\d+\))?|\s*\(\d+\)</span></div>
+        <div>치환 패턴 (Replace): <span class="val">(빈 칸)</span></div>
+        <div style="margin-top: 0.5rem; color: #64748b;">결과: <code>문서 - 복사본 (2).docx</code> -> <code>문서.docx</code></div>
+      </div>
+
+      <h2>2. 배처 툴에서 정규식을 사용하는 방법</h2>
+      <ol>
+        <li><a href="/batch-rename.html" style="color: #ec4899; font-weight: bold;">대량 파일 리네이머</a> 페이지에 접속하여 대상 파일을 로드합니다.</li>
+        <li>규칙 유형에서 <strong>'문자열 치환(Replace)'</strong>을 선택하고, <strong>'정규식(Regex) 사용'</strong> 체크박스를 켭니다.</li>
+        <li>검색할 정규식 패턴과 치환 패턴(예: <code>$1_$2</code>)을 입력합니다.</li>
+        <li>테이블에서 실시간 미리보기를 확인한 뒤 <strong>'이름 변경 적용'</strong>을 클릭합니다.</li>
+      </ol>
+
+      <div class="tool-cta">
+        <h3>정규식으로 수백 개의 파일명을 즉시 정리해 보세요</h3>
+        <p style="margin-bottom: 0.5rem; font-size: 0.875rem; color: #cbd5e1;">실시간 미리보기와 Undo를 지원하여 안심하고 테스트할 수 있습니다.</p>
+        <a href="/batch-rename.html">
+          <i class="fa-solid fa-play"></i> 정규식 파일 리네이머 바로가기
+        </a>
+      </div>
+
+      <h2>관련 추천 가이드</h2>
+      <ul>
+        <li><a href="/guides/regex-advanced-pattern-guide.html" style="color: #f472b6; text-decoration: none; font-weight: 600;">실무에서 바로 쓰는 고급 정규식(Regex) 파일 리네이밍 15선</a></li>
+        <li><a href="/guides/batch-rename.html" style="color: #f472b6; text-decoration: none; font-weight: 600;">대량 파일 이름 일괄 변경 및 스마트 리네이밍 기본 가이드</a></li>
+        <li><a href="/guides/os-batch-rename-cli-vs-web.html" style="color: #f472b6; text-decoration: none; font-weight: 600;">PowerShell vs macOS zsh vs 웹 리네이머 비교 분석</a></li>
+      </ul>
+    </article>
 
     <footer>
       &copy; 2026 Batcher Tools. All rights reserved.

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windows PowerShell vs macOS 터미널 vs 웹 브라우저 파일명 일괄 변경 심층 비교 - Batcher Tools</title>
+  <meta name="description" content="Windows PowerShell, macOS zsh 명령줄 스크립트와 웹 GUI 도구를 이용한 대량 파일 이름 일괄 변경 방법의 장단점, 안전장치 및 생산성을 심층 비교합니다." />
+  <meta name="keywords" content="PowerShell 파일명 일괄 변경, 맥 터미널 파일 이름 바꾸기, bash batch rename, CLI vs GUI 리네이머, 파일 일괄 이름 변경 비교" />
+  
+  <link rel="canonical" href="https://batchertools.com/guides/os-batch-rename-cli-vs-web.html" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
+  <!-- Structured Data: Article, BreadcrumbList -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "Windows PowerShell vs macOS 터미널 vs 웹 브라우저 파일명 일괄 변경 심층 비교",
+      "description": "Windows PowerShell, macOS zsh 명령줄 스크립트와 웹 GUI 도구를 이용한 대량 파일명 변경 방법의 장단점 및 안전장치 비교",
+      "author": {
+        "@type": "Organization",
+        "name": "Batcher Tools"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Batcher Tools",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://batchertools.com/favicon.svg"
+        }
+      },
+      "datePublished": "2026-08-24",
+      "dateModified": "2026-08-24",
+      "mainEntityOfPage": "https://batchertools.com/guides/os-batch-rename-cli-vs-web.html"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://batchertools.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "사용 가이드",
+          "item": "https://batchertools.com/guides/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "OS별 파일 리네이밍 비교",
+          "item": "https://batchertools.com/guides/os-batch-rename-cli-vs-web.html"
+        }
+      ]
+    }
+  </script>
+
+  <style>
+    :root { color-scheme: dark; }
+    body {
+      margin: 0; padding: 0;
+      background-color: #020617; color: #cbd5e1;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.8;
+    }
+    h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #ec4899; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .back-btn:hover { color: #f472b6; }
+    .category-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(236, 72, 153, 0.15); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 9999px; color: #f472b6; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    h1 { font-size: 2.25rem; margin: 0.5rem 0; line-height: 1.3; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .meta { font-size: 0.875rem; color: #64748b; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .card { background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    h2 { font-size: 1.45rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid #ec4899; padding-left: 0.85rem; color: #f8fafc; }
+    h3 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: 0.75rem; color: #e2e8f0; }
+    p, li { font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1; }
+    ul, ol { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #f1f5f9; font-weight: 600; }
+    code { font-family: 'Fira Code', monospace; background: rgba(30, 41, 59, 0.8); color: #38bdf8; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-size: 0.875rem; }
+    .highlight-box { background: rgba(236, 72, 153, 0.08); border: 1px solid rgba(236, 72, 153, 0.2); border-radius: 0.875rem; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+    .highlight-box p { margin: 0; color: #fbcfe8; font-weight: 500; font-size: 0.92rem; }
+    .code-block { background: #0b0f19; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; font-family: 'Fira Code', monospace; font-size: 0.825rem; color: #34d399; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.875rem; }
+    th, td { border: 1px solid #1e293b; padding: 0.75rem 1rem; text-align: left; }
+    th { background: rgba(30, 41, 59, 0.6); color: #f8fafc; font-weight: 600; }
+    td { background: rgba(15, 23, 42, 0.4); }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <a href="/guides/index.html" class="back-btn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>가이드 목록으로 돌아가기</span>
+        </a>
+        <span class="category-badge">CLI vs GUI 비교</span>
+      </div>
+      <h1>Windows PowerShell vs macOS 터미널 vs 웹 브라우저 파일명 일괄 변경 심층 비교</h1>
+      <div class="meta">
+        <span><i class="fa-regular fa-calendar text-pink-400"></i> 최종 갱신: 2026년 8월 24일</span>
+        <span><i class="fa-regular fa-clock text-pink-400"></i> 읽는 시간: 약 8분</span>
+        <span><i class="fa-solid fa-terminal text-pink-400"></i> 환경: Windows, macOS, Linux, Web</span>
+      </div>
+    </div>
+
+    <article class="card">
+      <p>대량의 파일 이름을 한 번에 변경하는 방법은 크게 운영체제 명령줄 인터페이스(CLI)를 활용하는 방법과 웹 브라우저 GUI 도구를 활용하는 방법으로 나뉩니다. 각 방식의 구문(Syntax), 안전성, 실행 취소(Undo) 지원 여부 및 장단점을 비교해 보겠습니다.</p>
+
+      <h2>1. Windows PowerShell을 이용한 일괄 변경</h2>
+      <p>Windows 10/11에서는 PowerShell의 <code>Get-ChildItem</code>과 <code>Rename-Item</code> 명령어를 파이프라인으로 연결하여 파일명을 변경할 수 있습니다.</p>
+      
+      <div class="code-block">
+# 예: 모든 .png 파일 앞에 "2026_" 접두사 붙이기
+Get-ChildItem *.png | Rename-Item -NewName { "2026_" + $_.Name }
+
+# 예: 파일명에서 "temp_" 문자열 찾아 삭제하기
+Get-ChildItem | Rename-Item -NewName { $_.Name -replace 'temp_','' }
+      </div>
+      <p><strong>단점:</strong> 오타 하나로 원치 않는 시스템 파일이나 중요 문서가 영구 변경될 위험이 있으며, 실행 취소(Undo)가 지원되지 않습니다.</p>
+
+      <h2>2. macOS zsh / bash 터미널을 이용한 일괄 변경</h2>
+      <p>macOS에서는 기본 터미널 루프나 Homebrew로 설치하는 <code>rename</code> 유틸리티를 사용합니다.</p>
+      <div class="code-block">
+# bash 루프를 이용한 문자열 치환
+for f in *.jpg; do
+  mv "$f" "${f//old_text/new_text}"
+done
+      </div>
+      <p><strong>단점:</strong> 쉘 스크립트 문법이 생소한 비개발자에게는 진입 장벽이 높고 실시간 시각적 검토가 불가능합니다.</p>
+
+      <h2>3. 배처 툴(Web GUI) 방식의 결정적 장점</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>비교 항목</th>
+            <th>PowerShell / Bash (CLI)</th>
+            <th>배처 툴 (웹 GUI)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>실시간 시각적 미리보기</strong></td>
+            <td>불가 (실행 전 결과 확인 어려움)</td>
+            <td><strong>완벽 지원 (표에 실시간 표시)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>실행 취소 (Undo / Reset)</strong></td>
+            <td>불가 (되돌리기 스크립트 직접 작성 필요)</td>
+            <td><strong>원클릭 Undo & Reset 지원</strong></td>
+          </tr>
+          <tr>
+            <td><strong>운영체제 호환성</strong></td>
+            <td>OS별 문법 상이 (Windows vs Mac)</td>
+            <td><strong>크롬/엣지/사파리 어디서나 동일</strong></td>
+          </tr>
+          <tr>
+            <td><strong>사용 난이도</strong></td>
+            <td>쉘 문법 및 파이프라인 지식 필요</td>
+            <td><strong>직관적인 버튼 및 입력 폼</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>관련 추천 가이드</h2>
+      <ul>
+        <li><a href="/guides/batch-rename.html" style="color: #f472b6; text-decoration: none; font-weight: 600;">대량 파일 이름 일괄 변경 기본 활용법</a></li>
+        <li><a href="/guides/regex-rename-guide.html" style="color: #f472b6; text-decoration: none; font-weight: 600;">정규표현식(Regex) 파일 리네이밍 실전 가이드</a></li>
+      </ul>
+    </article>
+
+    <footer>
+      &copy; 2026 Batcher Tools. All rights reserved.
+    </footer>
+  </div>
+</body>
+
+</html>

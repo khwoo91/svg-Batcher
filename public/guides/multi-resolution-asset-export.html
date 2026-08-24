@@ -4,142 +4,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-ko="[사용 가이드] 웹 디자이너 및 앱 개발자를 위한 해상도별(@2x, @3x) SVG 에셋 일괄 내보내기 - Batcher Tools" data-en="[Usage Guide] Multi-Resolution (@2x, @3x) SVG Asset Export Guide for Designers & Developers - Batcher Tools">[사용 가이드] 웹 디자이너 및 앱 개발자를 위한 해상도별(@2x, @3x) SVG 에셋 일괄 내보내기 - Batcher Tools</title>
-  <meta name="description" content="안드로이드(Android mdpi/xhdpi/xxhdpi)와 iOS(Retina @2x/@3x) 모바일 앱 환경 대응을 위해 대량의 SVG 에셋을 배율별 PNG/JPG 이미지로 고품질 일괄 추출하는 노하우 가이드입니다." />
+  <title>모바일 앱 다중 해상도 에셋 익스포트 워크플로우 가이드 - Batcher Tools</title>
+  <meta name="description" content="iOS Retina(@2x, @3x) 및 Android DPI(mdpi, hdpi, xhdpi, xxhdpi) 표준 규격에 맞춘 고해상도 그래픽 에셋 일괄 추출 가이드입니다." />
+  <meta name="keywords" content="모바일 에셋 익스포트, iOS 레티나 에셋, 안드로이드 dpi 규격, 다중 해상도 이미지 추출, UI 디자인 에셋 파이프라인" />
+  
   <link rel="canonical" href="https://batchertools.com/guides/multi-resolution-asset-export.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
+  <!-- Structured Data: Article, BreadcrumbList -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "모바일 앱 다중 해상도 에셋 익스포트 워크플로우 가이드",
+      "description": "iOS Retina 및 Android DPI 표준 규격에 맞춘 고해상도 그래픽 에셋 일괄 추출 가이드",
+      "author": {
+        "@type": "Organization",
+        "name": "Batcher Tools"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Batcher Tools",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://batchertools.com/favicon.svg"
+        }
+      },
+      "datePublished": "2026-08-01",
+      "dateModified": "2026-08-24",
+      "mainEntityOfPage": "https://batchertools.com/guides/multi-resolution-asset-export.html"
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "홈",
+          "item": "https://batchertools.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "사용 가이드",
+          "item": "https://batchertools.com/guides/index.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "다중 해상도 에셋 익스포트",
+          "item": "https://batchertools.com/guides/multi-resolution-asset-export.html"
+        }
+      ]
+    }
+  </script>
+
   <style>
     :root { color-scheme: dark; }
-    body { margin: 0; padding: 0; background-color: #020617; color: #cbd5e1; font-family: 'Inter', system-ui, -apple-system, sans-serif; line-height: 1.8; }
-    h1, h2, h3 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
-    .container { max-width: 840px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
-    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
-    .header-content { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #818cf8; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: color 0.2s; }
-    .back-btn:hover { color: #a5b4fc; }
-    h1 { font-size: 2rem; margin: 0.5rem 0; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-    .meta { font-size: 0.875rem; color: #64748b; display: flex; gap: 1.5rem; }
-    .card { background: rgba(15, 23, 42, 0.4); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
-    h2 { font-size: 1.4rem; color: #818cf8; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #1e293b; padding-bottom: 0.5rem; }
-    h3 { font-size: 1.15rem; color: #f1f5f9; margin-top: 1.5rem; }
-    p { margin-bottom: 1.2rem; }
-    ul, ol { margin-bottom: 1.5rem; padding-left: 1.5rem; }
-    li { margin-bottom: 0.5rem; }
-    .highlight-box { background: rgba(99, 102, 241, 0.08); border-left: 4px solid #6366f1; padding: 1.25rem; border-radius: 0 0.75rem 0.75rem 0; margin: 1.5rem 0; }
-    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
-    .lang-ko, .lang-en { display: none !important; }
-    body.lang-ko-active .lang-ko { display: block !important; }
-    body.lang-ko-active span.lang-ko, body.lang-ko-active strong.lang-ko, body.lang-ko-active a.lang-ko { display: inline !important; }
-    body.lang-en-active .lang-en { display: block !important; }
-    body.lang-en-active span.lang-en, body.lang-en-active strong.lang-en, body.lang-en-active a.lang-en { display: inline !important; }
-    .lang-selector { display: inline-flex; align-items: center; gap: 0.25rem; background: rgba(30, 41, 59, 0.5); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 0.5rem; padding: 0.25rem 0.5rem; }
-    .lang-btn { background: none; border: none; color: #64748b; cursor: pointer; font-size: 0.8rem; font-weight: 600; padding: 0.25rem 0.5rem; border-radius: 0.25rem; transition: all 0.2s; }
-    .lang-btn:hover { color: #cbd5e1; }
-    .lang-btn.active { color: #818cf8; background: rgba(99, 102, 241, 0.15); }
-    .lang-divider { color: #334155; font-size: 0.8rem; }
-  </style>
-  <script>
-    function setLanguage(lang) {
-      localStorage.setItem('batcher-lang', lang);
-      document.body.className = lang === 'ko' ? 'lang-ko-active' : 'lang-en-active';
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.toggle('active', btn.getAttribute('data-lang') === lang));
-      const titleEl = document.querySelector('title');
-      if (titleEl) titleEl.textContent = lang === 'ko' ? titleEl.getAttribute('data-ko') : titleEl.getAttribute('data-en');
+    body {
+      margin: 0; padding: 0;
+      background-color: #020617; color: #cbd5e1;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.8;
     }
-    document.addEventListener('DOMContentLoaded', () => {
-      let lang = localStorage.getItem('batcher-lang') || (navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en');
-      setLanguage(lang);
-      document.querySelectorAll('.lang-btn').forEach(btn => btn.addEventListener('click', () => setLanguage(btn.getAttribute('data-lang'))));
-    });
-  </script>
+    h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #818cf8; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .back-btn:hover { color: #a5b4fc; }
+    .category-badge { display: inline-block; padding: 0.25rem 0.75rem; background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.3); border-radius: 9999px; color: #a5b4fc; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    h1 { font-size: 2.25rem; margin: 0.5rem 0; line-height: 1.3; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .meta { font-size: 0.875rem; color: #64748b; display: flex; gap: 1.25rem; flex-wrap: wrap; }
+    .card { background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    h2 { font-size: 1.45rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid #6366f1; padding-left: 0.85rem; color: #f8fafc; }
+    h3 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: 0.75rem; color: #e2e8f0; }
+    p, li { font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1; }
+    ul, ol { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #f1f5f9; font-weight: 600; }
+    .highlight-box { background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 0.875rem; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+    .highlight-box p { margin: 0; color: #c7d2fe; font-weight: 500; font-size: 0.92rem; }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
+  </style>
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-content">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <a href="/guides/index.html" class="back-btn">
           <i class="fa-solid fa-arrow-left"></i>
-          <span class="lang-ko">가이드 목록으로 돌아가기</span>
-          <span class="lang-en">Back to Guides</span>
+          <span>가이드 목록으로 돌아가기</span>
         </a>
-        <div class="lang-selector">
-          <button class="lang-btn" data-lang="ko">KO</button>
-          <span class="lang-divider">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
+        <span class="category-badge">디자인 시스템</span>
       </div>
-      <h1>
-        <span class="lang-ko">[사용 가이드] 웹 디자이너 및 앱 개발자를 위한 해상도별(@2x, @3x) SVG 에셋 일괄 내보내기</span>
-        <span class="lang-en">[Usage Guide] Multi-Resolution (@2x, @3x) SVG Asset Export Guide for Designers & Developers</span>
-      </h1>
+      <h1>모바일 앱 다중 해상도 에셋 익스포트 워크플로우 가이드</h1>
       <div class="meta">
-        <span><i class="fa-solid fa-calendar"></i> <span class="lang-ko">발행일: 2026-08-03</span><span class="lang-en">Published: 2026-08-03</span></span>
-        <span><i class="fa-solid fa-user"></i> <span class="lang-ko">작성자: Batcher Tools UI/UX 팀</span><span class="lang-en">Author: Batcher Tools Design Team</span></span>
+        <span><i class="fa-regular fa-calendar text-indigo-400"></i> 최종 갱신: 2026년 8월 24일</span>
+        <span><i class="fa-regular fa-clock text-indigo-400"></i> 읽는 시간: 약 6분</span>
+        <span><i class="fa-solid fa-mobile-screen text-indigo-400"></i> 대상: 모바일 앱 디자이너, Flutter/React Native 개발자</span>
       </div>
     </div>
 
-    <div class="card">
-      <!-- KOREAN CONTENT -->
-      <div class="lang-ko">
-        <p>피그마(Figma), 어도비 일러스트레이터(Adobe Illustrator), 스케치(Sketch) 등 디자인 툴에서 작업한 아이콘과 그래픽 에셋은 원본이 벡터(SVG) 형태입니다. 하지만 iOS Swift(Xcode Asset Catalog) 및 안드로이드 Kotlin(res/drawable) 프로젝트에 아이콘을 탑재할 때는 여전히 해상도별 픽셀 밀도(DPI)에 맞춘 PNG 비트맵 파일이 반드시 필요합니다.</p>
+    <article class="card">
+      <p>모바일 앱을 개발할 때는 다양한 화면 크기와 픽셀 밀도를 가진 수천 종류의 스마트폰 디바이스를 지원해야 합니다. 기준 크기(1x)로만 에셋을 내보내면 고밀도 스마트폰에서 아이콘과 버튼이 흐릿하게 블러 처리되고, 반대로 너무 큰 고화질 이미지만 사용하면 앱의 메모리 점유율과 번들 크기가 과도하게 커집니다.</p>
 
-        <p>본 가이드에서는 **1.0x, 1.5x, 2.0x, 3.0x 고해상도 배율 에셋을 한 번의 클릭으로 접미사 커스텀과 함께 일괄 변환 및 내보내는 스마트 워크플로우**를 소개합니다.</p>
-
-        <h2>1. 모바일 플랫폼별 픽셀 밀도 규격 매핑</h2>
-        <ul>
-          <li><strong>iOS 규격:</strong> 1.0x (Standard @1x), 2.0x (Retina @2x), 3.0x (Super Retina @3x). 접미사 규칙 `icon@2x.png`, `icon@3x.png`</li>
-          <li><strong>Android 규격:</strong> mdpi(1.0x), hdpi(1.5x), xhdpi(2.0x), xxhdpi(3.0x). 접미사 규칙 `icon_1.5x.png`, `icon_2x.png`</li>
-        </ul>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-lightbulb"></i> <strong>배처 툴 접미사 커스텀 기능:</strong> 배처 툴에서는 1.5x, 2.0x, 3.0x 체크박스를 활성화한 후 접미사를 `@1.5x`, `@2x`, `@3x`로 원하는 규칙대로 지정할 수 있어 모바일 프로젝트 폴더 구조에 맞게 즉시 빌드할 수 있습니다.</p>
-        </div>
-
-        <h2>2. 실전 에셋 변환 단계</h2>
-        <ol>
-          <li>피그마 등에서 작업한 SVG 아이콘 파일들을 하나의 로컬 폴더에 보관합니다.</li>
-          <li>배처 툴의 <strong>'이미지 변환 (SVG)'</strong> 탭에서 해당 폴더를 연동합니다.</li>
-          <li>출력 포맷을 **PNG (알파 투명도 보존)**로 설정합니다.</li>
-          <li>설정 패널에서 1.0x, 1.5x, 2.0x 배율 및 접미사를 확인하고 **'변환 시작'**을 클릭합니다.</li>
-        </ol>
-
-        <h2>3. 투명 배경(Alpha Channel)과 원본 ViewBox 설정 체크리스트</h2>
-        <p>PNG 변환 시 사각형 외곽선 밖 배경이 투명하게 유지되도록 SVG 내부에 <code>background="none"</code> 또는 viewBox 파라미터가 명시되어 있는지 확인하세요. 배처 툴의 HTML5 캔버스는 투명 픽셀 알맹이를 알파 채널 무손실로 정확하게 인코딩합니다.</p>
+      <div class="highlight-box">
+        <p><i class="fa-solid fa-layer-group"></i> <strong>표준 규격:</strong> iOS는 <code>@2x</code>, <code>@3x</code> 규격을 사용하고, Android는 <code>mdpi (1x)</code>, <code>hdpi (1.5x)</code>, <code>xhdpi (2x)</code>, <code>xxhdpi (3x)</code> 폴더 구조를 사용합니다.</p>
       </div>
 
-      <!-- ENGLISH CONTENT -->
-      <div class="lang-en">
-        <p>Design tools like Figma and Adobe Illustrator create scalable SVG vector icons. However, native iOS Swift (Xcode Asset Catalog) and Android Kotlin (`res/drawable`) applications still demand pixel-density bitmap assets in PNG format.</p>
+      <h2>1. 모바일 운영체제별 해상도 배율 표준</h2>
+      <ul>
+        <li><strong>1.0x (100%):</strong> 기준 크기 (예: 48x48 px). 구형 저해상도 기기 및 기본 mdpi 대응.</li>
+        <li><strong>1.5x (150%):</strong> 안드로이드 HDPI 규격. (예: 72x72 px)</li>
+        <li><strong>2.0x (200%):</strong> Apple iPhone 표준 레티나(@2x) 및 안드로이드 XHDPI 규격. (예: 96x96 px)</li>
+        <li><strong>3.0x (300%):</strong> Apple iPhone Pro/Max 슈퍼 레티나(@3x) 및 안드로이드 XXHDPI 규격. (예: 144x144 px)</li>
+      </ul>
 
-        <p>This guide explains how to export multi-scale assets (<strong>1.0x, 1.5x, 2.0x, 3.0x</strong>) with custom filename suffixes (@2x, @3x) in one batch click using Batcher Tools.</p>
+      <h2>2. 배처 툴을 활용한 원클릭 에셋 패키징</h2>
+      <p>배처 툴(Batcher Tools)의 SVG 변환기를 활용하면 마스터 SVG 벡터 원본을 드래그 앤 드롭한 뒤, 1.0x, 1.5x, 2.0x, 3.0x 배율을 동시 체크하여 한 번의 클릭으로 모바일 앱 빌드용 에셋 패키지를 일괄 추출할 수 있습니다.</p>
 
-        <h2>1. Mobile Density Standards</h2>
-        <ul>
-          <li><strong>iOS:</strong> Standard @1x, Retina @2x, Super Retina @3x. Filename convention: `icon@2x.png`, `icon@3x.png`.</li>
-          <li><strong>Android:</strong> mdpi (1.0x), hdpi (1.5x), xhdpi (2.0x), xxhdpi (3.0x).</li>
-        </ul>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-lightbulb"></i> <strong>Custom Suffix Support:</strong> Customize output suffixes like `@1.5x`, `@2x`, and `@3x` directly inside Batcher Tools settings.</p>
-        </div>
-
-        <h2>2. Step-by-Step Conversion</h2>
-        <ol>
-          <li>Export SVG files from Figma into a local directory.</li>
-          <li>Mount directory in Batcher Tools under <strong>'SVG Images'</strong>.</li>
-          <li>Select **PNG output** to retain alpha transparency.</li>
-          <li>Enable target scale multipliers and click **'Start Conversion'**.</li>
-        </ol>
-      </div>
-    </div>
+      <h2>관련 추천 가이드</h2>
+      <ul>
+        <li><a href="/guides/retina-display-asset-management.html" style="color: #818cf8; text-decoration: none; font-weight: 600;">고해상도 레티나 디스플레이 대응 에셋 관리 표준</a></li>
+        <li><a href="/guides/svg-to-png.html" style="color: #818cf8; text-decoration: none; font-weight: 600;">SVG PNG/JPG 고화질 변환 가이드</a></li>
+      </ul>
+    </article>
 
     <footer>
       &copy; 2026 Batcher Tools. All rights reserved.

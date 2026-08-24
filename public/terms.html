@@ -4,346 +4,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-ko="이용약관 - Batcher Tools" data-en="Terms of Service - Batcher Tools">이용약관 - Batcher Tools</title>
+  <title>이용약관 (Terms of Service) - Batcher Tools</title>
+  <meta name="description" content="배처 툴(Batcher Tools)의 서비스 이용약관 및 오픈소스 라이선스, 상업적 이용 권리 안내입니다." />
+  <meta name="keywords" content="이용약관, Terms of Service, 라이선스 안내, Batcher Tools 약관" />
+  
+  <link rel="canonical" href="https://batchertools.com/terms.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
   <style>
-    :root {
-      color-scheme: dark;
-    }
-
+    :root { color-scheme: dark; }
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #020617;
-      color: #cbd5e1;
+      margin: 0; padding: 0;
+      background-color: #020617; color: #cbd5e1;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.7;
+      line-height: 1.8;
     }
-
-    h1,
-    h2,
-    h3 {
-      font-family: 'Outfit', sans-serif;
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .container {
-      max-width: 50rem;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 6rem;
-    }
-
-    .header {
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 2rem;
-      margin-bottom: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #818cf8;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .back-btn:hover {
-      color: #a5b4fc;
-    }
-
-    h1 {
-      font-size: 2.25rem;
-      margin: 0.5rem 0;
-      background: linear-gradient(to right, #ffffff, #94a3b8);
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .meta {
-      font-size: 0.875rem;
-      color: #64748b;
-    }
-
-    .card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 1.25rem;
-      padding: 2.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      margin-top: 2rem;
-      margin-bottom: 1rem;
-      border-left: 3px solid #6366f1;
-      padding-left: 0.75rem;
-    }
-
-    h3 {
-      font-size: 1.05rem;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #e2e8f0;
-    }
-
-    p,
-    li {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    ul,
-    ol {
-      margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.85rem;
-      color: #475569;
-      border-top: 1px solid #1e293b;
-      padding-top: 2rem;
-    }
-
-    /* Translation Styles */
-    .lang-ko,
-    .lang-en {
-      display: none !important;
-    }
-
-    body.lang-ko-active .lang-ko {
-      display: block !important;
-    }
-
-    body.lang-ko-active span.lang-ko,
-    body.lang-ko-active strong.lang-ko,
-    body.lang-ko-active a.lang-ko {
-      display: inline !important;
-    }
-
-    body.lang-en-active .lang-en {
-      display: block !important;
-    }
-
-    body.lang-en-active span.lang-en,
-    body.lang-en-active strong.lang-en,
-    body.lang-en-active a.lang-en {
-      display: inline !important;
-    }
-
-    .lang-selector {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      background: rgba(30, 41, 59, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 0.5rem;
-      padding: 0.25rem 0.5rem;
-    }
-
-    .lang-btn {
-      background: none;
-      border: none;
-      color: #64748b;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      transition: all 0.2s;
-    }
-
-    .lang-btn:hover {
-      color: #cbd5e1;
-    }
-
-    .lang-btn.active {
-      color: #818cf8;
-      background: rgba(99, 102, 241, 0.15);
-    }
-
-    .lang-divider {
-      color: #334155;
-      font-size: 0.8rem;
-    }
+    h1, h2, h3 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #818cf8; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .back-btn:hover { color: #a5b4fc; }
+    h1 { font-size: 2.25rem; margin: 0.5rem 0; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .meta { font-size: 0.875rem; color: #64748b; }
+    .card { background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    h2 { font-size: 1.4rem; margin-top: 2rem; margin-bottom: 0.75rem; border-left: 4px solid #6366f1; padding-left: 0.85rem; color: #f8fafc; }
+    p, li { font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1; }
+    ul { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #f1f5f9; font-weight: 600; }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
   </style>
-  <script>
-    function setLanguage(lang) {
-      localStorage.setItem('batcher-lang', lang);
-      document.body.className = lang === 'ko' ? 'lang-ko-active' : 'lang-en-active';
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-      });
-      
-      const titleEl = document.querySelector('title');
-      if (titleEl) {
-        titleEl.textContent = lang === 'ko' ? titleEl.getAttribute('data-ko') : titleEl.getAttribute('data-en');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      let lang = localStorage.getItem('batcher-lang');
-      if (!lang) {
-        lang = navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en';
-      }
-      setLanguage(lang);
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          setLanguage(btn.getAttribute('data-lang'));
-        });
-      });
-    });
-  </script>
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-content">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <a href="/" class="back-btn">
           <i class="fa-solid fa-arrow-left"></i>
-          <span class="lang-ko">Batcher 도구로 돌아가기</span>
-          <span class="lang-en">Back to Batcher Tools</span>
+          <span>메인 홈으로 돌아가기</span>
         </a>
-        <div class="lang-selector">
-          <button class="lang-btn" data-lang="ko">KO</button>
-          <span class="lang-divider">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
       </div>
-      <h1>
-        <span class="lang-ko">이용약관</span>
-        <span class="lang-en">Terms of Service</span>
-      </h1>
+      <h1>이용약관 (Terms of Service)</h1>
       <div class="meta">
-        <span class="lang-ko">최종 개정일: 2026년 6월 29일</span>
-        <span class="lang-en">Effective Date: June 29, 2026</span>
+        <span>시행일자: 2026년 8월 1일 | 최종 개정: 2026년 8월 24일</span>
       </div>
     </div>
 
-    <div class="card">
-      <!-- KOREAN CONTENT -->
-      <div class="lang-ko">
-        <p>본 이용약관(이하 '약관')은 '배처 툴(Batcher Tools)' (이하 '서비스')이 제공하는 모든 기능 및 웹 서비스의 이용과 관련하여, 서비스 제공자와 서비스 이용자 간의 권리, 의무 및 책임 사항을 규정하는 것을 목적으로 합니다.</p>
+    <article class="card">
+      <p>본 약관은 배처 툴(Batcher Tools, 이하 '서비스')이 제공하는 모든 웹 기반 파일 변환 및 일괄 처리 도구의 이용 조건과 권리 관계를 규정합니다.</p>
 
-        <h2>1. 약관의 효력 및 변경</h2>
-        <ul>
-          <li>본 약관은 서비스를 이용하고자 하는 모든 이용자가 본 웹사이트에 접속하여 서비스를 활용하는 시점부터 효력이 발생합니다.</li>
-          <li>본 서비스는 필요한 경우 관계 법령을 위배하지 않는 범위 내에서 본 약관을 개정할 수 있으며, 변경된 약관은 약관 페이지에 개시되거나 사이트 접속 시 효력이 발생합니다.</li>
-        </ul>
+      <h2>1. 서비스의 무상 제공 및 상업적 이용 권리</h2>
+      <p>본 서비스는 모든 개인 및 기업 사용자에게 완전 무료로 제공됩니다. 본 서비스를 통해 변환, 압축, 인코딩 또는 이름 변경된 모든 결과물 파일의 저작권 및 소유권은 100% 사용자에게 귀속되며, 상업적/비상업적 목적으로 자유롭게 배포, 수정, 판매할 수 있습니다.</p>
 
-        <h2>2. 서비스의 성격 및 제공</h2>
-        <ul>
-          <li>본 서비스는 SVG 형식의 벡터 이미지 변환(PNG/JPG), WAV/MP3 오디오 변환, 대량의 파일 이름 일괄 변경(Batch Rename) 및 안전한 로컬 파일 삭제를 브라우저 내에서 제공하는 로컬 작업 도구입니다.</li>
-          <li>서비스의 모든 핵심 기능(이미지 래스터라이징, 오디오 디코딩/인코딩, 일괄 이름 변경 및 디스크 직접 쓰기/ZIP 다운로드 등)은 완전한 **클라이언트 사이드(Client-Side)** 방식으로 동작합니다. 사용자가 작업을 위해 선택하거나 입력한 파일 및 파일명 정보는 외부 서버로 이전되거나 저장되지 않습니다.</li>
-        </ul>
+      <h2>2. 면책 조항 (Disclaimer of Warranty)</h2>
+      <p>본 서비스는 최선을 다해 안전하고 정확하게 파일을 가공하도록 개발되었으나, 소프트웨어의 특성상 "있는 그대로(AS IS)" 제공됩니다. 사용자의 브라우저 오류, 메모리 부족 또는 파일 손상으로 인해 발생할 수 있는 데이터 손실에 대해 서비스 운영자는 법적 책임을 지지 않으므로, 대량 작업 전 원본 파일의 백업을 권장합니다.</p>
 
-        <h2>3. 지식재산권 및 사용 라이선스</h2>
-        <ul>
-          <li><strong>변환 원본 및 결과물의 귀속</strong>: 이용자가 서비스를 통해 가공, 이름 변경 또는 삭제하기 위해 투입한 원본 파일 및 작업 완료된 결과물(이미지, 오디오 파일, 수정된 로컬 파일 등)에 대한 모든 지식재산권, 저작권, 사용 권리는 전적으로 이를 적재하고 가공한 이용자 본인에게 귀속됩니다.</li>
-          <li><strong>상업적 이용의 자유</strong>: 본 서비스를 활용하여 생산한 변환 결과물 및 변경된 파일명 등은 개인적, 비상업적 용도뿐만 아니라 인쇄물, 웹 서비스 배포, 제품 디자인, 소프트웨어 등 상업적 환경을 포함하여 모든 분야에서 자유롭게 저작권 제약 없이 사용이 가능합니다.</li>
-          <li><strong>도구의 저작권</strong>: 서비스의 UI 디자인, 마크업, CSS 스타일, 자바스크립트 소스 코드의 저작권은 서비스 제공자에게 있으며, 명시된 라이선스 범위 내에서만 정당하게 활용되어야 합니다.</li>
-        </ul>
-
-        <h2>4. 이용자의 의무 및 행위 제한</h2>
-        <p>이용자는 다음 각 호에 해당하는 행위를 해서는 안 됩니다.</p>
-        <ul>
-          <li>서비스의 설정을 비정상적으로 조작하거나 악의적인 공격을 통하여 시스템 인프라 및 웹 서비스의 정상적인 동작에 해를 끼치는 행위</li>
-          <li>본 서비스의 도메인 또는 사이트 서버 주소를 활용하여 피싱 행위나 악성 소프트웨어를 무단 유포하는 등 법적 질서를 훼손하는 행위</li>
-        </ul>
-
-        <h2>5. 책임의 한계 및 면책 (Disclaimer)</h2>
-        <ul>
-          <li>본 서비스는 '있는 그대로(AS-IS)' 제공되며, 무상으로 개방된 브라우저 로컬 도구의 성격을 가집니다. 따라서 변환, 이름 변경 및 삭제 작업 중 발생할 수 있는 브라우저 오동작, 디렉토리 쓰기 권한 미획득, 디스크 공간 부족, 브라우저 메모리 한계 현상 등으로 인한 파일 또는 데이터의 영구 유실에 대하여 서비스 제공자는 일체의 보증 또는 민형사상 책임을 지지 않습니다.</li>
-          <li>핵심 가공 작업을 진행하기 전, 원본 데이터를 타 폴더에 안전하게 사전에 백업해둘 의무는 전적으로 이용자 본인에게 있습니다. 특히 파일 이름 변경과 파일 삭제는 복구가 불가하므로 각별한 주의가 필요합니다.</li>
-          <li>본 서비스는 외부 네트워크 장애, 제3자 인프라(호스팅, 광고 파트너십 등) 점검, 브라우저 사양 및 보안 표준 변경 등으로 인해 기능 제공이 예고 없이 일시적으로 중단되거나 제한될 수 있습니다.</li>
-        </ul>
-
-        <h2>6. 준거법 및 분쟁 해결</h2>
-        <ul>
-          <li>본 약관의 해석 및 서비스 이용과 관련하여 분쟁이 발생하는 경우 대한민국 법률을 준거법으로 합니다.</li>
-          <li>서비스 이용과 관련된 소송이나 법적 다툼이 발생하는 경우 관계 법령상 관할 법원에 준하여 해결합니다.</li>
-        </ul>
-      </div>
-
-      <!-- ENGLISH CONTENT -->
-      <div class="lang-en">
-        <p>These Terms of Service (hereinafter referred to as 'Terms') define the rights, obligations, and responsibilities between the service provider and the user regarding the use of functions and web services provided by 'Batcher Tools' (hereinafter referred to as 'Service').</p>
-
-        <h2>1. Effectiveness and Revision of Terms</h2>
-        <ul>
-          <li>These Terms shall take effect from the moment any user accesses this website and uses the Service.</li>
-          <li>The Service may amend these Terms as necessary to the extent that it does not violate relevant laws. The amended Terms will take effect upon being posted on this page or when accessing the site.</li>
-        </ul>
-
-        <h2>2. Characteristics and Provision of the Service</h2>
-        <ul>
-          <li>The Service is a local utility tool running directly in your browser to batch convert SVG files (to PNG/JPG), batch convert audio formats (WAV to MP3), bulk rename files, and delete local files.</li>
-          <li>All core features (image rasterization, audio encoding/decoding, bulk rename, direct file write, and ZIP download) operate entirely client-side. The files and filenames you process are never sent to or stored on any external server.</li>
-        </ul>
-
-        <h2>3. Intellectual Property Rights & License of Use</h2>
-        <ul>
-          <li><strong>Ownership of Source Materials and Outputs</strong>: All intellectual property rights, copyrights, and usage rights for files processed or generated (images, audio, renamed files) belong entirely to the user.</li>
-          <li><strong>Freedom of Commercial Use</strong>: Output generated through the Service can be used freely for both personal and commercial purposes (including software builds, designs, prints, and distributions) without copyright restrictions.</li>
-          <li><strong>Copyright of the Tool</strong>: The UI design, markup, CSS styles, and JavaScript source code of the Service are owned by the service provider and must be used within the scope of license terms.</li>
-        </ul>
-
-        <h2>4. User Obligations & Restrictions</h2>
-        <p>Users must not engage in any of the following activities:</p>
-        <ul>
-          <li>Manipulating service settings maliciously or attacking system infrastructure to harm normal web operations.</li>
-          <li>Using the service domain or server address for phishing or malicious software distribution.</li>
-        </ul>
-
-        <h2>5. Disclaimer & Limitation of Liability</h2>
-        <ul>
-          <li>The Service is provided 'AS-IS' and is a free browser-based local utility. The provider is not liable for any permanent data or file loss caused by browser crashes, missing folder permissions, storage shortages, or browser memory constraints.</li>
-          <li>It is the user's sole responsibility to back up important files before performing bulk renaming or deletion. File deletion and renaming cannot be undone.</li>
-          <li>The Service may be temporarily suspended or restricted due to network failures, third-party infrastructure maintenance (hosting, advertising), or changes in browser standards.</li>
-        </ul>
-
-        <h2>6. Governing Law & Dispute Resolution</h2>
-        <ul>
-          <li>These Terms shall be interpreted and governed by the laws of the Republic of Korea.</li>
-          <li>Any dispute arising from the use of the Service shall be resolved in a court of competent jurisdiction under relevant laws.</li>
-        </ul>
-      </div>
-    </div>
+      <h2>3. 지식재산권</h2>
+      <p>본 웹사이트의 UI 디자인, 로고, 소스 코드 및 기술 가이드 문서에 대한 저작권은 Batcher Tools에 있으며, 허가 없는 무단 복제 및 스크래핑을 금합니다.</p>
+    </article>
 
     <footer>
       &copy; 2026 Batcher Tools. All rights reserved.

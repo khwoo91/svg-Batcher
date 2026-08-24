@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>클라이언트 사이드 웹 툴의 미래와 프라이버시 보호 - Batcher Tools</title>
-  <meta name="description" content="WebAssembly, Web Worker, File System Access API 등 현대 브라우저 기술이 이끄는 제로 업로드 클라이언트 사이드 도구의 기술적 장점과 데이터 프라이버시 혁신을 소개합니다." />
-  <meta name="keywords" content="클라이언트 사이드 웹 도구, 프라이버시 웹 기술, WebAssembly, Web Worker, 서버리스 도구" />
+  <title>브라우저 File System Access API 동작 원리와 보안 아키텍처 - Batcher Tools</title>
+  <meta name="description" content="웹 표준 WICG File System Access API를 통해 웹 브라우저가 로컬 디렉토리와 파일을 직접 읽고 쓰는 원리, 보안 샌드박스 및 권한 모델을 설명합니다." />
+  <meta name="keywords" content="File System Access API, showDirectoryPicker, 웹 파일 시스템 접근, 브라우저 로컬 파일 쓰기, WICG 웹 표준" />
   
-  <link rel="canonical" href="https://batchertools.com/guides/client-side-tools.html" />
+  <link rel="canonical" href="https://batchertools.com/guides/browser-file-system-access-api.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -16,7 +16,7 @@
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
@@ -26,8 +26,8 @@
     {
       "@context": "https://schema.org",
       "@type": "Article",
-      "headline": "클라이언트 사이드 웹 툴의 미래와 프라이버시 보호",
-      "description": "WebAssembly와 브라우저 API가 이끄는 제로 업로드 클라이언트 사이드 도구의 기술적 장점과 데이터 프라이버시 혁신",
+      "headline": "브라우저 File System Access API 동작 원리와 보안 아키텍처",
+      "description": "WICG File System Access API를 통해 웹 브라우저가 로컬 디렉토리를 직접 조작하는 원리와 보안 모델",
       "author": {
         "@type": "Organization",
         "name": "Batcher Tools"
@@ -40,9 +40,9 @@
           "url": "https://batchertools.com/favicon.svg"
         }
       },
-      "datePublished": "2026-08-01",
+      "datePublished": "2026-08-24",
       "dateModified": "2026-08-24",
-      "mainEntityOfPage": "https://batchertools.com/guides/client-side-tools.html"
+      "mainEntityOfPage": "https://batchertools.com/guides/browser-file-system-access-api.html"
     }
   </script>
   <script type="application/ld+json">
@@ -65,8 +65,8 @@
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "클라이언트 사이드 도구의 미래",
-          "item": "https://batchertools.com/guides/client-side-tools.html"
+          "name": "File System Access API 가이드",
+          "item": "https://batchertools.com/guides/browser-file-system-access-api.html"
         }
       ]
     }
@@ -95,6 +95,8 @@
     ul, ol { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
     li { margin-bottom: 0.5rem; }
     strong { color: #f1f5f9; font-weight: 600; }
+    code { font-family: 'Fira Code', monospace; background: rgba(30, 41, 59, 0.8); color: #38bdf8; padding: 0.2rem 0.4rem; border-radius: 0.375rem; font-size: 0.875rem; }
+    .code-block { background: #0b0f19; border: 1px solid #1e293b; border-radius: 0.75rem; padding: 1.25rem; margin: 1rem 0; font-family: 'Fira Code', monospace; font-size: 0.825rem; color: #34d399; overflow-x: auto; }
     footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
   </style>
 </head>
@@ -107,30 +109,48 @@
           <i class="fa-solid fa-arrow-left"></i>
           <span>가이드 목록으로 돌아가기</span>
         </a>
-        <span class="category-badge">웹 아키텍처</span>
+        <span class="category-badge">웹 표준 API</span>
       </div>
-      <h1>클라이언트 사이드 웹 툴의 미래와 프라이버시 보호</h1>
+      <h1>브라우저 File System Access API 동작 원리와 보안 아키텍처</h1>
       <div class="meta">
         <span><i class="fa-regular fa-calendar text-emerald-400"></i> 최종 갱신: 2026년 8월 24일</span>
-        <span><i class="fa-regular fa-clock text-emerald-400"></i> 읽는 시간: 약 5분</span>
-        <span><i class="fa-solid fa-cloud-slash text-emerald-400"></i> 트렌드: Zero-Upload Web Apps</span>
+        <span><i class="fa-regular fa-clock text-emerald-400"></i> 읽는 시간: 약 7분</span>
+        <span><i class="fa-solid fa-code-branch text-emerald-400"></i> 표준: W3C / WICG</span>
       </div>
     </div>
 
     <article class="card">
-      <p>과거에는 무거운 파일 처리(비디오 트랜스코딩, 이미지 변환, 대량 파일 조작)를 위해 사용자의 파일을 중앙 서버로 업로드해야만 했습니다. 그러나 최신 웹 브라우저의 성능 향상과 <strong>WebAssembly(Wasm)</strong>, <strong>Web Worker</strong>, <strong>File System Access API</strong>의 발전으로 이제는 서버 비용 없이 브라우저 자체에서 데스크톱 프로그램에 버금가는 고속 연산이 가능해졌습니다.</p>
+      <p>기존 웹 애플리케이션에서는 <code>&lt;input type="file"&gt;</code> 태그를 통해 단방향으로 파일을 읽어들인 뒤, 결과물을 매번 새로운 다운로드 파일이나 압축 ZIP 파일로 내려받아야 했습니다. 그러나 W3C/WICG에서 제정한 <strong>File System Access API</strong>의 등장으로 웹 앱에서도 사용자의 허가 아래 실제 로컬 디렉토리의 파일을 직접 열고, 덮어쓰고, 이름을 변경할 수 있게 되었습니다.</p>
 
-      <h2>클라이언트 사이드 도구의 핵심 장점</h2>
+      <h2>1. showDirectoryPicker()를 통한 디렉토리 핸들 획득</h2>
+      <p>웹 사이트가 사용자의 디스크에 임의로 접근하는 것을 방지하기 위해, 반드시 사용자의 명시적인 클릭 제스처(User Action)를 통해서만 브라우저 고유의 폴더 선택 팝업이 호출됩니다.</p>
+
+      <div class="code-block">
+// 사용자가 선택한 디렉토리 핸들 획득 (읽기/쓰기 권한 요청)
+const dirHandle = await window.showDirectoryPicker({
+  mode: 'readwrite'
+});
+
+// 하위 파일 순회 및 로컬 파일 접근
+for await (const entry of dirHandle.values()) {
+  if (entry.kind === 'file') {
+    const file = await entry.getFile();
+    console.log(`파일명: ${file.name}, 크기: ${file.size} bytes`);
+  }
+}
+      </div>
+
+      <h2>2. 보안 샌드박스와 권한 모델</h2>
       <ul>
-        <li><strong>완전한 데이터 프라이버시(Privacy by Design):</strong> 데이터가 사용자의 로컬 디바이스를 벗어나지 않아 GDPR, CCPA 등 엄격한 개인정보 규제를 자연스럽게 충족합니다.</li>
-        <li><strong>서버 인프라 비용 절감:</strong> 백엔드 컴퓨팅 인프라 비용이 들지 않아 사용자에게 100% 무료로 무제한 서비스를 제공할 수 있습니다.</li>
-        <li><strong>오프라인 작동 가능:</strong> PWA(Progressive Web App) 기술과 결합하여 비행기 안이나 네트워크가 불안정한 환경에서도 동일하게 작동합니다.</li>
+        <li><strong>사용자 승인 필수:</strong> 웹 사이트는 사용자가 선택한 특정 폴더 외부(예: C:\Windows 등 시스템 폴더)에는 절대 접근할 수 없습니다.</li>
+        <li><strong>세션별 권한 관리:</strong> 브라우저 탭을 닫으면 권한이 자동 소멸되며, 다시 열었을 때 명시적인 재승인이 요구됩니다.</li>
+        <li><strong>HTTPS 필수:</strong> 중간자 공격을 방지하기 위해 오직 보안 연결(HTTPS) 환경에서만 API가 활성화됩니다.</li>
       </ul>
 
       <h2>관련 추천 가이드</h2>
       <ul>
         <li><a href="/guides/serverless-local-conversion.html" style="color: #34d399; text-decoration: none; font-weight: 600;">100% 브라우저 로컬 데이터 처리와 보안 우수성</a></li>
-        <li><a href="/guides/web-worker-audio-encoding.html" style="color: #34d399; text-decoration: none; font-weight: 600;">Web Worker 멀티스레드 오디오 인코딩 기술</a></li>
+        <li><a href="/guides/client-side-tools.html" style="color: #34d399; text-decoration: none; font-weight: 600;">클라이언트 사이드 웹 툴의 미래와 프라이버시</a></li>
       </ul>
     </article>
 

@@ -209,6 +209,21 @@ export class BatcherApp extends LitElement {
     }
 
     // SVG export format restore
+    const path = window.location.pathname.toLowerCase();
+    const hash = window.location.hash.toLowerCase();
+    const params = new URLSearchParams(window.location.search);
+    const tabParam = params.get("tab");
+
+    if (path.includes("svg-to-png") || hash === "#svg" || tabParam === "svg") {
+      this.activeTab = "svg";
+    } else if (path.includes("wav-to-mp3") || hash === "#audio" || tabParam === "audio") {
+      this.activeTab = "audio";
+    } else if (path.includes("batch-rename") || hash === "#rename" || tabParam === "rename") {
+      this.activeTab = "rename";
+    } else if (path.includes("cleaner") || hash === "#cleaner" || tabParam === "resource" || tabParam === "cleaner") {
+      this.activeTab = "resource";
+    }
+
     const savedFormat = localStorage.getItem("batcher-svg-exportFormat");
     if (savedFormat === "png" || savedFormat === "jpg") {
       this.exportFormat = savedFormat;

@@ -4,406 +4,118 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title data-ko="서비스 소개 - Batcher Tools" data-en="About - Batcher Tools">서비스 소개 - Batcher Tools</title>
+  <title>서비스 소개 (About Us) - Batcher Tools</title>
+  <meta name="description" content="배처 툴(Batcher Tools)은 대용량 SVG 이미지 변환, 고음질 오디오 인코딩 및 대량 파일명 일괄 변경을 100% 웹 브라우저 로컬에서 안전하게 처리하는 오픈 스마트 유틸리티입니다." />
+  <meta name="keywords" content="Batcher Tools 소개, 로컬 파일 변환기, 서버리스 유틸리티, 브라우저 파일 도구, 프라이버시 보호 도구" />
+  
+  <link rel="canonical" href="https://batchertools.com/about.html" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="shortcut icon" type="image/png" href="/favicon.png" />
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6294524233833258" crossorigin="anonymous"></script>
+
   <style>
-    :root {
-      color-scheme: dark;
-    }
-
+    :root { color-scheme: dark; }
     body {
-      margin: 0;
-      padding: 0;
-      background-color: #020617;
-      color: #cbd5e1;
+      margin: 0; padding: 0;
+      background-color: #020617; color: #cbd5e1;
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      line-height: 1.7;
+      line-height: 1.8;
     }
-
-    h1,
-    h2,
-    h3 {
-      font-family: 'Outfit', sans-serif;
-      color: #ffffff;
-      font-weight: 700;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 3rem 1.5rem 6rem;
-    }
-
-    .header {
-      border-bottom: 1px solid #1e293b;
-      padding-bottom: 2rem;
-      margin-bottom: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #818cf8;
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      transition: color 0.2s;
-    }
-
-    .back-btn:hover {
-      color: #a5b4fc;
-    }
-
-    h1 {
-      font-size: 2.25rem;
-      margin: 0.5rem 0;
-      background: linear-gradient(to right, #ffffff, #94a3b8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .meta {
-      font-size: 0.875rem;
-      color: #64748b;
-    }
-
-    .card {
-      background: rgba(15, 23, 42, 0.4);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-radius: 1.25rem;
-      padding: 2.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    h2 {
-      font-size: 1.35rem;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      border-left: 3px solid #6366f1;
-      padding-left: 0.75rem;
-    }
-
-    h3 {
-      font-size: 1.05rem;
-      margin-top: 1.5rem;
-      margin-bottom: 0.5rem;
-      color: #e2e8f0;
-    }
-
-    p,
-    li {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-    }
-
-    ul,
-    ol {
-      margin-top: 0.5rem;
-      margin-bottom: 1.5rem;
-      padding-left: 1.5rem;
-    }
-
-    li {
-      margin-bottom: 0.5rem;
-    }
-
-    .highlight-box {
-      background: rgba(99, 102, 241, 0.08);
-      border: 1px solid rgba(99, 102, 241, 0.15);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-      margin: 1.5rem 0;
-    }
-
-    .highlight-box p {
-      margin: 0;
-      color: #a5b4fc;
-      font-weight: 500;
-    }
-
-    .feature-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.25rem;
-      margin: 2rem 0;
-    }
-
-    @media (min-width: 640px) {
-      .feature-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .feature-item {
-      background: rgba(30, 41, 59, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      border-radius: 0.75rem;
-      padding: 1.25rem;
-    }
-
-    .feature-title {
-      font-weight: 600;
-      color: #f8fafc;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .feature-desc {
-      font-size: 0.875rem;
-      color: #94a3b8;
-      margin: 0;
-    }
-
-    footer {
-      text-align: center;
-      margin-top: 4rem;
-      font-size: 0.85rem;
-      color: #475569;
-      border-top: 1px solid #1e293b;
-      padding-top: 2rem;
-    }
-
-    /* Translation Styles */
-    .lang-ko,
-    .lang-en {
-      display: none !important;
-    }
-
-    body.lang-ko-active .lang-ko {
-      display: block !important;
-    }
-
-    body.lang-ko-active span.lang-ko,
-    body.lang-ko-active strong.lang-ko,
-    body.lang-ko-active a.lang-ko {
-      display: inline !important;
-    }
-
-    body.lang-en-active .lang-en {
-      display: block !important;
-    }
-
-    body.lang-en-active span.lang-en,
-    body.lang-en-active strong.lang-en,
-    body.lang-en-active a.lang-en {
-      display: inline !important;
-    }
-
-    .lang-selector {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.25rem;
-      background: rgba(30, 41, 59, 0.5);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 0.5rem;
-      padding: 0.25rem 0.5rem;
-    }
-
-    .lang-btn {
-      background: none;
-      border: none;
-      color: #64748b;
-      cursor: pointer;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.25rem;
-      transition: all 0.2s;
-    }
-
-    .lang-btn:hover {
-      color: #cbd5e1;
-    }
-
-    .lang-btn.active {
-      color: #818cf8;
-      background: rgba(99, 102, 241, 0.15);
-    }
-
-    .lang-divider {
-      color: #334155;
-      font-size: 0.8rem;
-    }
+    h1, h2, h3 { font-family: 'Outfit', sans-serif; color: #ffffff; font-weight: 700; }
+    .container { max-width: 860px; margin: 0 auto; padding: 3rem 1.5rem 6rem; }
+    .header { border-bottom: 1px solid #1e293b; padding-bottom: 2rem; margin-bottom: 2.5rem; display: flex; flex-direction: column; gap: 1rem; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #818cf8; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
+    .back-btn:hover { color: #a5b4fc; }
+    h1 { font-size: 2.25rem; margin: 0.5rem 0; background: linear-gradient(to right, #ffffff, #94a3b8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+    .meta { font-size: 0.875rem; color: #64748b; }
+    .card { background: rgba(15, 23, 42, 0.5); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 1.25rem; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); }
+    h2 { font-size: 1.45rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid #6366f1; padding-left: 0.85rem; color: #f8fafc; }
+    h3 { font-size: 1.15rem; margin-top: 1.75rem; margin-bottom: 0.75rem; color: #e2e8f0; }
+    p, li { font-size: 0.95rem; margin-bottom: 1rem; color: #cbd5e1; }
+    ul, ol { margin-top: 0.5rem; margin-bottom: 1.5rem; padding-left: 1.5rem; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #f1f5f9; font-weight: 600; }
+    .highlight-box { background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 0.875rem; padding: 1.25rem 1.5rem; margin: 1.75rem 0; }
+    .highlight-box p { margin: 0; color: #c7d2fe; font-weight: 500; font-size: 0.92rem; }
+    .feature-grid { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin: 2rem 0; }
+    @media (min-width: 640px) { .feature-grid { grid-template-columns: 1fr 1fr; } }
+    .feature-item { background: rgba(30, 41, 59, 0.4); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 0.875rem; padding: 1.5rem; }
+    .feature-title { font-weight: 700; color: #f8fafc; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; font-size: 1.05rem; }
+    .feature-desc { font-size: 0.875rem; color: #94a3b8; margin: 0; line-height: 1.6; }
+    footer { text-align: center; margin-top: 4rem; font-size: 0.85rem; color: #475569; border-top: 1px solid #1e293b; padding-top: 2rem; }
   </style>
-  <script>
-    function setLanguage(lang) {
-      localStorage.setItem('batcher-lang', lang);
-      document.body.className = lang === 'ko' ? 'lang-ko-active' : 'lang-en-active';
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
-      });
-      
-      const titleEl = document.querySelector('title');
-      if (titleEl) {
-        titleEl.textContent = lang === 'ko' ? titleEl.getAttribute('data-ko') : titleEl.getAttribute('data-en');
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      let lang = localStorage.getItem('batcher-lang');
-      if (!lang) {
-        lang = navigator.language.toLowerCase().startsWith('ko') ? 'ko' : 'en';
-      }
-      setLanguage(lang);
-      
-      document.querySelectorAll('.lang-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          setLanguage(btn.getAttribute('data-lang'));
-        });
-      });
-    });
-  </script>
 </head>
 
 <body>
   <div class="container">
     <div class="header">
-      <div class="header-content">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
         <a href="/" class="back-btn">
           <i class="fa-solid fa-arrow-left"></i>
-          <span class="lang-ko">Batcher 도구로 돌아가기</span>
-          <span class="lang-en">Back to Batcher Tools</span>
+          <span>메인 홈으로 돌아가기</span>
         </a>
-        <div class="lang-selector">
-          <button class="lang-btn" data-lang="ko">KO</button>
-          <span class="lang-divider">|</span>
-          <button class="lang-btn" data-lang="en">EN</button>
-        </div>
       </div>
-      <h1>
-        <span class="lang-ko">서비스 소개</span>
-        <span class="lang-en">About Batcher Tools</span>
-      </h1>
+      <h1>서비스 소개 (About Batcher Tools)</h1>
       <div class="meta">
-        <span class="lang-ko">웹 브라우저 기반의 로컬 다기능 일괄 처리 유틸리티</span>
-        <span class="lang-en">Browser-based local multi-functional bulk processing utility</span>
+        <span>웹 브라우저 기반의 100% 로컬 다기능 일괄 처리 스마트 유틸리티</span>
       </div>
     </div>
 
-    <div class="card">
-      <!-- KOREAN CONTENT -->
-      <div class="lang-ko">
-        <p>배처 툴(Batcher Tools)은 대량의 SVG 이미지 변환, 고해상도 오디오 인코딩 및 일괄적인 파일명 규칙 재정의를 소프트웨어 설치 없이 웹 브라우저 내에서 직접 수행할 수 있도록 설계된 차세대 스마트 로컬 웹 유틸리티 도구입니다.</p>
-        
-        <p>무거운 로컬 변환 소프트웨어를 설치하거나 민감한 자료를 검증되지 않은 불투명한 외부 웹 서버로 전송할 필요 없이, 크롬(Chrome) 및 엣지(Edge) 등 표준 브라우저 API가 제공하는 강력한 샌드박스 내부 보안 구조를 기반으로 작동합니다.</p>
+    <article class="card">
+      <p><strong>배처 툴(Batcher Tools)</strong>은 디자이너, 영상 편집자, 오디오 크리에이터, 소프트웨어 엔지니어들이 일상적으로 마주치는 대용량 파일 가공 작업을 소프트웨어 설치 없이 웹 브라우저 내에서 직접 수행할 수 있도록 설계된 차세대 로컬 웹 유틸리티 도구입니다.</p>
 
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-server-slash"></i> <strong>완전무결한 로컬 브라우저 구동 (Server-less & Zero Upload):</strong> 배처 툴은 어떠한 원본 파일 정보, 이미지/오디오 바이너리, 혹은 수정된 파일명 목록 정보도 절대 서버로 전송하거나 외부에 보관하지 않습니다. 모든 처리 작업은 오직 사용자의 로컬 환경 내 브라우저 힙(Heap) 메모리와 로컬 CPU 자원만을 활용하여 동작하므로, 저작권이 중요하거나 기밀에 속하는 프로젝트 소스 리소스를 마음 편히 다룰 수 있습니다.</p>
-        </div>
+      <p>기존의 온라인 변환기들이 사용자의 중요한 파일을 타사 클라우드 서버로 업로드하여 처리하던 방식과 달리, 크롬(Chrome), 엣지(Edge) 등 최신 웹 표준 브라우저의 샌드박스 내부 보안 구조를 기반으로 작동합니다.</p>
 
-        <h2>제공하는 핵심 기능</h2>
-        <div class="feature-grid">
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-file-image text-indigo-400"></i> SVG 대량 이미지 변환
-            </div>
-            <p class="feature-desc">벡터 포맷인 SVG 파일을 1.0배수, 1.5배수, 2.0배수 등 고배율의 고해상도 PNG 또는 JPG 포맷으로 순식간에 일괄 추출하여 내보냅니다. UI/UX 디자인 에셋 대량 출력 작업에 적합합니다.</p>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-file-audio text-emerald-400"></i> WAV/MP3 오디오 일괄 인코딩
-            </div>
-            <p class="feature-desc">용량이 매우 큰 무압축 WAV 오디오 파일을 브라우저 내부 오디오 코덱을 활용해 대중적이고 압축률이 높은 MP3 파일로 즉시 변환합니다. 128kbps부터 320kbps까지 원하는 음질을 직접 선택하여 제어할 수 있습니다.</p>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-signature text-purple-400"></i> 대량 파일 이름 일괄 변경 (Batch Rename)
-            </div>
-            <p class="feature-desc">특정 문자 찾아서 바꾸기, 앞/뒤에 문자 추가, 자리수 기준 삭제, 공백 지우기, 일련번호 매기기, 괄호 안 텍스트 소거 등 현업에서 가장 많이 필요한 일괄 네이밍 규칙 시스템을 실시간 프리뷰와 실행 취소(Undo)를 지원하며 자유자재로 설정할 수 있습니다.</p>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-folder-open text-amber-400"></i> 로컬 디렉토리 직접 기록 (WICG API)
-            </div>
-            <p class="feature-desc">최신 브라우저가 제공하는 File System Access API를 지원하여, 웹 브라우저에서도 사용자가 권한을 수락한 실제 로컬 디렉토리 경로에 파일을 즉각 덮어쓰거나 직접 작성(Direct Output)할 수 있어 별도로 매번 다운로드받아 정리하는 불편함을 해소했습니다.</p>
-          </div>
-        </div>
-
-        <h2>배처 툴의 개발 철학</h2>
-        <ul>
-          <li><strong>안전한 프라이버시(Privacy First):</strong> 클라이언트 사이드 변환 처리를 철칙으로 삼아 해킹이나 유출의 원인 자체를 차단합니다.</li>
-          <li><strong>설치 없는 단순함(No Installation):</strong> 운영체제(OS)나 버전 구애 없이 최신 크롬이나 웨일, 엣지 브라우저만 켜면 1초 안에 사용 준비를 마칩니다.</li>
-          <li><strong>제한 없는 개방성(Free and Commercial Use):</strong> 어떠한 사용량 제약이나 유료 멤버십 가입을 요구하지 않습니다. 본 서비스를 통해 변환하고 가공된 출력 결과물은 모두 상업적/비상업적 목적으로 자유롭게 배포하고 이용할 수 있습니다.</li>
-        </ul>
+      <div class="highlight-box">
+        <p><i class="fa-solid fa-server-slash"></i> <strong>100% 로컬 브라우저 구동 (Zero-Upload & Server-less):</strong> 배처 툴은 어떠한 원본 파일 정보, 그래픽/음향 바이너리, 수정된 파일명 목록도 절대 서버로 전송하거나 외부에 보관하지 않습니다. 모든 작업은 오직 사용자의 PC 로컬 CPU/RAM 자원만을 활용하여 안전하게 실행됩니다.</p>
       </div>
 
-      <!-- ENGLISH CONTENT -->
-      <div class="lang-en">
-        <p>Batcher Tools is a next-generation smart local web utility designed to perform bulk SVG image conversion, high-resolution audio encoding, and batch filename rule redefinition directly inside your web browser without requiring any software installation.</p>
-        
-        <p>Instead of installing heavy local conversion software or sending sensitive files to unverified, non-transparent external web servers, it operates based on a robust sandbox security structure provided by standard modern browsers such as Chrome and Edge.</p>
-
-        <div class="highlight-box">
-          <p><i class="fa-solid fa-server-slash"></i> <strong>100% Local Browser Execution (Server-less & Zero Upload):</strong> Batcher Tools never uploads or stores any of your source files, image/audio binary data, or modified filename lists to any external server. All processing tasks are performed entirely inside your local browser's Heap memory using only your local CPU/RAM resources, allowing you to process copyrighted or highly confidential project source resources with complete peace of mind.</p>
+      <h2>제공하는 핵심 기능</h2>
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="feature-title">
+            <i class="fa-solid fa-file-image text-indigo-400"></i> SVG 대량 이미지 변환
+          </div>
+          <p class="feature-desc">벡터 SVG 파일을 1.0x, 1.5x, 2.0x(@2x), 3.0x(@3x) 고해상도 PNG 또는 JPG 포맷으로 순식간에 일괄 추출하여 내보냅니다.</p>
         </div>
 
-        <h2>Core Features</h2>
-        <div class="feature-grid">
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-file-image text-indigo-400"></i> SVG Bulk Image Conversion
-            </div>
-            <p class="feature-desc">Batch export SVG vector files into high-resolution PNG or JPG formats at multiple scale ratios (1.0x, 1.5x, 2.0x) instantly. Ideal for batch-exporting UI/UX design assets.</p>
+        <div class="feature-item">
+          <div class="feature-title">
+            <i class="fa-solid fa-file-audio text-purple-400"></i> WAV/MP3 오디오 일괄 인코딩
           </div>
-
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-file-audio text-emerald-400"></i> WAV/MP3 Audio Encoding
-            </div>
-            <p class="feature-desc">Batch convert large uncompressed WAV files into compact, widely compatible MP3 files using browser-native codecs. Customize output quality with target bitrates from 128kbps to 320kbps.</p>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-signature text-purple-400"></i> Bulk Rename (Batch Rename)
-            </div>
-            <p class="feature-desc">Apply a combination of rules—such as replacing text, adding prefixes/suffixes, cutting character ranges, removing brackets, keeping numbers, and auto-numbering—with a real-time preview and safe Undo/Reset options.</p>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-title">
-              <i class="fa-solid fa-folder-open text-amber-400"></i> Direct Local Directory Access (WICG API)
-            </div>
-            <p class="feature-desc">Leveraging the File System Access API in modern browsers, you can write converted or renamed files directly to your local directories without the hassle of downloading and unpacking ZIP files.</p>
-          </div>
+          <p class="feature-desc">대용량 무압축 WAV 오디오를 브라우저 내부 코덱으로 128kbps~320kbps 맞춤 비트레이트 MP3로 초고속 일괄 인코딩합니다.</p>
         </div>
 
-        <h2>Development Philosophy</h2>
-        <ul>
-          <li><strong>Privacy First:</strong> We process everything client-side to fundamentally eliminate data leak risks.</li>
-          <li><strong>No Installation:</strong> Get ready in 1 second by opening your browser—no OS restrictions.</li>
-          <li><strong>Free and Commercial Use:</strong> No usage limits or premium paywalls. All output files are yours to use commercially or non-commercially without copyright restrictions.</li>
-        </ul>
+        <div class="feature-item">
+          <div class="feature-title">
+            <i class="fa-solid fa-signature text-pink-400"></i> 대량 파일 이름 일괄 변경 (Batch Rename)
+          </div>
+          <p class="feature-desc">문자열 치환, 접두/접미사, 자리수 삭제, 일련번호 부여, 정규식(Regex)을 실시간 미리보기 및 실행 취소(Undo)와 함께 지원합니다.</p>
+        </div>
+
+        <div class="feature-item">
+          <div class="feature-title">
+            <i class="fa-solid fa-folder-open text-emerald-400"></i> 로컬 폴더 직접 기록 (WICG API)
+          </div>
+          <p class="feature-desc">File System Access API를 통해 매번 압축 ZIP 파일을 풀 필요 없이 로컬 디렉토리에 변경 결과를 직접 저장합니다.</p>
+        </div>
       </div>
-    </div>
+
+      <h2>배처 툴의 개발 철학</h2>
+      <ul>
+        <li><strong>안전한 프라이버시(Privacy First):</strong> 클라이언트 사이드 처리를 철칙으로 삼아 데이터 유출의 원인 자체를 원천 차단합니다.</li>
+        <li><strong>설치 없는 단순함(No Installation):</strong> OS나 버전 구애 없이 최신 웹 브라우저만 열면 1초 안에 사용 준비를 마칩니다.</li>
+        <li><strong>제한 없는 개방성(Free and Commercial Use):</strong> 사용량 제약이나 유료 멤버십 가입이 없습니다. 변환된 모든 결과물은 상업적/비상업적 목적으로 자유롭게 배포하고 이용할 수 있습니다.</li>
+      </ul>
+    </article>
 
     <footer>
       &copy; 2026 Batcher Tools. All rights reserved.

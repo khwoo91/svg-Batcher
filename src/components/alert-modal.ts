@@ -193,9 +193,7 @@ export class AlertModal extends LitElement {
           <div
             class="bg-slate-950/80 px-6 py-3.5 flex items-center justify-between border-t border-slate-800 shrink-0"
           >
-            <div class="text-xs text-slate-500 font-medium">
-              &copy; 2026 Batcher Tools
-            </div>
+            <div class="text-xs text-slate-500 font-medium">&copy; 2026 Batcher Tools</div>
             <button
               @click="${this.handleClose}"
               class="px-5 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white rounded-xl text-xs sm:text-sm font-bold shadow-md active:scale-95 transition-all cursor-pointer font-sans"
@@ -214,5 +212,3 @@ declare global {
     "alert-modal": AlertModal;
   }
 }
-
-

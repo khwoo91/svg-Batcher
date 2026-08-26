@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, type PropertyValues } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import type { BrokenLinkItem, UnusedFileItem, CleanScanResult } from "../types";
 
@@ -16,7 +16,7 @@ export class CleanerResultsView extends LitElement {
     return this;
   }
 
-  override updated(changedProperties: Map<string, any>) {
+  override updated(changedProperties: PropertyValues<this>) {
     if (changedProperties.has("scanResult") && this.scanResult) {
       this.unusedItems = [...this.scanResult.unusedFiles];
       this.brokenItems = [...this.scanResult.brokenLinks];

@@ -109,7 +109,8 @@ export class BatcherApp extends LitElement {
 
   @state() private modalMessage = "";
   @state() private showModal = false;
-  @state() private modalType: "info" | "success" | "error" = "info";
+  @state() private modalType: "info" | "success" | "error" | "support" = "info";
+  @state() private modalCustomTitle = "";
 
   @state() private scaleOptions: ScaleOption[] = [
     { scale: 1, label: "1.0x (default)", suffix: "" },
@@ -140,9 +141,14 @@ export class BatcherApp extends LitElement {
     }
   }
 
-  private showAlert(message: string, type: "info" | "success" | "error" = "info") {
+  private showAlert(
+    message: string,
+    type: "info" | "success" | "error" | "support" = "info",
+    customTitle = "",
+  ) {
     this.modalMessage = message;
     this.modalType = type;
+    this.modalCustomTitle = customTitle;
     this.showModal = true;
   }
 
@@ -1646,6 +1652,15 @@ export class BatcherApp extends LitElement {
         <app-header
           .lang="${this.currentLang}"
           @change-lang="${(e: CustomEvent<"ko" | "en">) => this.handleLangChange(e.detail)}"
+          @open-support="${() => {
+            this.showAlert(
+              "",
+              "support",
+              this.currentLang === "ko"
+                ? "☕ 개발자 응원 및 커피 후원"
+                : "☕ Support the Developer",
+            );
+          }}"
         ></app-header>
 
         <!-- Tabs Navigation -->
@@ -2205,6 +2220,8 @@ export class BatcherApp extends LitElement {
         .show="${this.showModal}"
         .message="${this.modalMessage}"
         .type="${this.modalType}"
+        .lang="${this.currentLang}"
+        .customTitle="${this.modalCustomTitle}"
         @close="${() => (this.showModal = false)}"
       ></alert-modal>
 

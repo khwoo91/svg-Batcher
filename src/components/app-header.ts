@@ -69,6 +69,16 @@ export class AppHeader extends LitElement {
     );
   }
 
+  private handleSupportClick(e: MouseEvent) {
+    e.preventDefault();
+    this.dispatchEvent(
+      new CustomEvent("open-support", {
+        bubbles: true,
+        composed: true,
+      }),
+    );
+  }
+
   protected override render() {
     const desc = this.lang === "ko" ? "쉽고 빠른 파일 변환 툴" : "Easy and Fast File Converter";
 
@@ -170,9 +180,9 @@ export class AppHeader extends LitElement {
           </div>
         </div>
 
-        <div class="flex items-center gap-3 self-end md:self-center">
+        <div class="flex items-center gap-2 sm:gap-3 self-end md:self-center">
           <!-- Main Nav Links for SEO & AdSense Crawlers -->
-          <nav class="flex items-center gap-1 sm:gap-2 text-xs font-semibold text-slate-300 mr-1 sm:mr-3 font-sans">
+          <nav class="flex items-center gap-1 sm:gap-2 text-xs font-semibold text-slate-300 mr-1 sm:mr-2 font-sans">
             <a
               href="/guides/index.html"
               class="hover:text-indigo-400 transition-colors py-1.5 px-2.5 rounded-lg hover:bg-slate-900/80 border border-transparent hover:border-slate-800"
@@ -192,6 +202,16 @@ export class AppHeader extends LitElement {
               ${this.lang === "ko" ? "문의" : "Contact"}
             </a>
           </nav>
+
+          <!-- Buy Me a Coffee Support Button (Opens in-app Modal) -->
+          <button
+            @click="${this.handleSupportClick}"
+            class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 hover:text-amber-300 border border-amber-500/30 hover:border-amber-500/50 text-xs font-bold transition-all shadow-sm active:scale-95 group font-sans shrink-0 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] cursor-pointer"
+            title="${this.lang === "ko" ? "도움이 되셨다면 커피 한 잔 후원해주세요! ☕" : "Support on Buy Me a Coffee! ☕"}"
+          >
+            <span class="text-sm group-hover:scale-110 transition-transform inline-block">☕</span>
+            <span class="hidden sm:inline">${this.lang === "ko" ? "커피 후원" : "Buy a Coffee"}</span>
+          </button>
 
           <!-- Theme Toggle Switch -->
           <button

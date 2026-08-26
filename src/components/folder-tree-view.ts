@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, type PropertyValues } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import type { BatchFile } from "../types";
 import { scanDirectoryTreeFast, type FastFolderNode } from "../utils/fs-utils";
@@ -21,7 +21,7 @@ export class FolderTreeView extends LitElement {
     return this;
   }
 
-  override updated(changedProperties: Map<string, any>) {
+  override updated(changedProperties: PropertyValues<this>) {
     if (
       changedProperties.has("files") ||
       changedProperties.has("dirHandle") ||

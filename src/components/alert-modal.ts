@@ -41,12 +41,12 @@ export class AlertModal extends LitElement {
       this.customTitle ||
       (this.type === "support"
         ? this.lang === "ko"
-          ? "☕ 개발자 응원 및 커피 후원"
+          ? "☕ 개발자 응원하기"
           : "☕ Support the Developer"
         : this.type === "success"
           ? this.lang === "ko"
-            ? "🎉 작업이 성공적으로 완료되었습니다!"
-            : "🎉 Completed Successfully!"
+            ? "🎉 변환이 깔끔하게 끝났어요!"
+            : "🎉 Completed Smoothly!"
           : this.type === "error"
             ? this.lang === "ko"
               ? "오류 안내"
@@ -71,7 +71,7 @@ export class AlertModal extends LitElement {
             ? html`
                 <!-- Top Centered Profile Avatar & Close Button -->
                 <div
-                  class="pt-6 pb-2 px-6 flex flex-col items-center justify-center relative bg-slate-950/40 border-b border-slate-800/60"
+                  class="pt-6 pb-3 px-6 flex flex-col items-center justify-center relative bg-slate-950/40 border-b border-slate-800/60"
                 >
                   <button
                     @click="${this.handleClose}"
@@ -83,7 +83,7 @@ export class AlertModal extends LitElement {
 
                   <!-- Centered Circular Avatar -->
                   <div
-                    class="relative w-16 h-16 rounded-full p-0.5 bg-linear-to-b from-amber-400 via-amber-500 to-slate-800 shadow-xl"
+                    class="relative w-16 h-16 rounded-full p-0.5 bg-linear-to-b from-amber-400 via-amber-500 to-slate-800 shadow-xl mb-2.5"
                   >
                     <img
                       src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2026/08/kTCBYoxK8PR8j3ov.jpg@1f.png"
@@ -96,6 +96,10 @@ export class AlertModal extends LitElement {
                       >☕</span
                     >
                   </div>
+
+                  <h3 class="text-sm sm:text-base font-bold text-slate-100 tracking-wide font-sans">
+                    ${defaultTitle}
+                  </h3>
                 </div>
               `
             : html`
@@ -133,7 +137,7 @@ export class AlertModal extends LitElement {
               `}
 
           <!-- Modal Body (Single Smooth Scroll Container) -->
-          <div class="p-4 sm:p-5 overflow-y-auto flex-1 space-y-3 font-sans text-sm">
+          <div class="p-4 sm:p-5 overflow-y-auto flex-1 space-y-3.5 font-sans text-sm">
             <!-- Result / Alert Message if any -->
             ${this.message
               ? html`
@@ -144,6 +148,25 @@ export class AlertModal extends LitElement {
                       : ""}"
                   >
                     ${this.message}
+                  </div>
+                `
+              : ""}
+
+            <!-- Warm supportive sub-message -->
+            ${isSupportOrSuccess
+              ? html`
+                  <div class="text-center px-2 py-1">
+                    <p class="text-xs text-slate-300 leading-relaxed font-sans">
+                      ${this.lang === "ko"
+                        ? "Batcher Tools가 소중한 작업 시간을 조금이나마 아껴드렸나요? 😊"
+                        : "Did Batcher Tools save your valuable time? 😊"}
+                      <br />
+                      <span class="text-slate-400">
+                        ${this.lang === "ko"
+                          ? "보내주시는 따뜻한 커피 한 잔은 지속적인 업데이트와 관리에 정말 큰 힘이 됩니다."
+                          : "A warm cup of coffee gives huge support for continuous updates and maintenance."}
+                      </span>
+                    </p>
                   </div>
                 `
               : ""}

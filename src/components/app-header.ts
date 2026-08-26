@@ -207,10 +207,10 @@ export class AppHeader extends LitElement {
           <button
             @click="${this.handleSupportClick}"
             class="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 hover:text-amber-300 border border-amber-500/30 hover:border-amber-500/50 text-xs font-bold transition-all shadow-sm active:scale-95 group font-sans shrink-0 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)] cursor-pointer"
-            title="${this.lang === "ko" ? "도움이 되셨다면 커피 한 잔 후원해주세요! ☕" : "Support on Buy Me a Coffee! ☕"}"
+            title="${this.lang === "ko" ? "따뜻한 커피 한 잔으로 개발자를 응원해주세요! ☕" : "Support the developer with a cup of coffee! ☕"}"
           >
             <span class="text-sm group-hover:scale-110 transition-transform inline-block">☕</span>
-            <span class="hidden sm:inline">${this.lang === "ko" ? "커피 후원" : "Buy a Coffee"}</span>
+            <span class="hidden sm:inline">${this.lang === "ko" ? "개발자 응원하기" : "Support Developer"}</span>
           </button>
 
           <!-- Theme Toggle Switch -->

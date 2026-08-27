@@ -41,8 +41,8 @@ export class AlertModal extends LitElement {
       this.customTitle ||
       (this.type === "support"
         ? this.lang === "ko"
-          ? "☕ 개발자 응원하기"
-          : "☕ Support the Developer"
+          ? "개발자 응원하기"
+          : "Support the Developer"
         : this.type === "success"
           ? this.lang === "ko"
             ? "🎉 변환이 깔끔하게 끝났어요!"
@@ -73,8 +73,8 @@ export class AlertModal extends LitElement {
           >
             <div class="flex items-center gap-3">
               <div
-                class="w-10 h-10 rounded-2xl shrink-0 flex items-center justify-center ${this.type ===
-                  "success" || this.type === "support"
+                class="w-10 h-10 rounded-2xl shrink-0 flex items-center justify-center ${this
+                  .type === "success" || this.type === "support"
                   ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
                   : this.type === "error"
                     ? "bg-rose-500/10 text-rose-400 border border-rose-500/20"

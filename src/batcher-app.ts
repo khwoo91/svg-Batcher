@@ -1678,7 +1678,7 @@ export class BatcherApp extends LitElement {
             this.showAlert(
               "",
               "support",
-              this.currentLang === "ko" ? "☕ 개발자 응원하기" : "☕ Support Developer",
+              this.currentLang === "ko" ? "개발자 응원하기" : "Support Developer",
             );
           }}"
         ></app-header>

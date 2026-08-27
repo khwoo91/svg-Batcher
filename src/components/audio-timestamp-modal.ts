@@ -1,4 +1,4 @@
-import { LitElement, html } from "lit";
+import { LitElement, html, type PropertyValues } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import type { AudioClipItem } from "../types";
 import { generateSmilXml, generateJsonData } from "../utils/audio-duration-utils";
@@ -14,6 +14,21 @@ export class AudioTimestampModal extends LitElement {
 
   protected override createRenderRoot() {
     return this;
+  }
+
+  override updated(changedProperties: PropertyValues<this>) {
+    if (changedProperties.has("show")) {
+      if (this.show) {
+        document.body.style.overflow = "hidden";
+      } else {
+        document.body.style.overflow = "";
+      }
+    }
+  }
+
+  override disconnectedCallback() {
+    document.body.style.overflow = "";
+    super.disconnectedCallback();
   }
 
   private handleClose() {

@@ -226,7 +226,12 @@ export class BatcherApp extends LitElement {
       this.activeTab = "audio";
     } else if (path.includes("batch-rename") || hash === "#rename" || tabParam === "rename") {
       this.activeTab = "rename";
-    } else if (path.includes("cleaner") || hash === "#cleaner" || tabParam === "resource" || tabParam === "cleaner") {
+    } else if (
+      path.includes("cleaner") ||
+      hash === "#cleaner" ||
+      tabParam === "resource" ||
+      tabParam === "cleaner"
+    ) {
       this.activeTab = "resource";
     }
 
@@ -485,8 +490,7 @@ export class BatcherApp extends LitElement {
       const fileList = Array.from(files);
       for (let i = 0; i < fileList.length; i++) {
         const file = fileList[i];
-        const relPath =
-          file.webkitRelativePath || (file as any).customRelativePath || file.name;
+        const relPath = file.webkitRelativePath || (file as any).customRelativePath || file.name;
         batchFiles.push({
           name: file.name,
           file: file,
@@ -504,7 +508,9 @@ export class BatcherApp extends LitElement {
       this.resourceFiles = batchFiles;
       this.resourceScanResult = null;
       this.resourceSelectedRootSegment = "";
-      const folderName = batchFiles[0]?.relativePath?.split("/")[0] || (this.currentLang === "ko" ? "선택된 폴더" : "Selected Folder");
+      const folderName =
+        batchFiles[0]?.relativePath?.split("/")[0] ||
+        (this.currentLang === "ko" ? "선택된 폴더" : "Selected Folder");
       this.addLog(
         this.currentLang === "ko"
           ? `[폴더 준비 완료] '${folderName}' 폴더의 총 ${batchFiles.length}개 파일 준비 완료.`
@@ -1355,8 +1361,7 @@ export class BatcherApp extends LitElement {
       return this.resourceDirHandle ? [this.resourceDirHandle.name] : [];
     }
     const sampleFile =
-      this.resourceFiles.find((f) => /\.(html|htm|css|js)$/i.test(f.name)) ||
-      this.resourceFiles[0];
+      this.resourceFiles.find((f) => /\.(html|htm|css|js)$/i.test(f.name)) || this.resourceFiles[0];
 
     const parts = sampleFile.relativePath.split("/").filter(Boolean);
     parts.pop(); // Remove filename
@@ -1431,7 +1436,11 @@ export class BatcherApp extends LitElement {
 
           // 2. ALSO scan any shared include/ folders across workspace (e.g. contents/include, include)
           const existingPaths = new Set(freshFiles.map((f) => f.relativePath));
-          const scanIncludeFolders = async (dirHandle: FileSystemDirectoryHandle, currentPath = "", depth = 0) => {
+          const scanIncludeFolders = async (
+            dirHandle: FileSystemDirectoryHandle,
+            currentPath = "",
+            depth = 0,
+          ) => {
             if (depth > 3) return;
             try {
               for await (const entry of dirHandle.values()) {
@@ -1439,15 +1448,28 @@ export class BatcherApp extends LitElement {
                   const childPath = currentPath ? `${currentPath}/${entry.name}` : entry.name;
                   if (entry.name.toLowerCase() === "include") {
                     const incFiles: BatchFile[] = [];
-                    await scanDirectory(entry as FileSystemDirectoryHandle, childPath, incFiles, "*");
+                    await scanDirectory(
+                      entry as FileSystemDirectoryHandle,
+                      childPath,
+                      incFiles,
+                      "*",
+                    );
                     incFiles.forEach((incFile) => {
                       if (!existingPaths.has(incFile.relativePath)) {
                         freshFiles.push(incFile);
                         existingPaths.add(incFile.relativePath);
                       }
                     });
-                  } else if (entry.name !== ".svn" && entry.name !== ".git" && entry.name !== "node_modules") {
-                    await scanIncludeFolders(entry as FileSystemDirectoryHandle, childPath, depth + 1);
+                  } else if (
+                    entry.name !== ".svn" &&
+                    entry.name !== ".git" &&
+                    entry.name !== "node_modules"
+                  ) {
+                    await scanIncludeFolders(
+                      entry as FileSystemDirectoryHandle,
+                      childPath,
+                      depth + 1,
+                    );
                   }
                 }
               }
@@ -1656,9 +1678,7 @@ export class BatcherApp extends LitElement {
             this.showAlert(
               "",
               "support",
-              this.currentLang === "ko"
-                ? "☕ 개발자 응원 및 커피 후원"
-                : "☕ Support the Developer",
+              this.currentLang === "ko" ? "☕ 개발자 응원하기" : "☕ Support Developer",
             );
           }}"
         ></app-header>
@@ -2030,7 +2050,7 @@ export class BatcherApp extends LitElement {
                   <div class="flex items-center gap-2">
                     <span
                       class="w-2 h-2 rounded-full ${isResource
-                        ? (this.resourceDirHandle || this.resourceFiles.length > 0)
+                        ? this.resourceDirHandle || this.resourceFiles.length > 0
                           ? "bg-emerald-400 animate-ping"
                           : "bg-slate-700"
                         : selectedFilesCount > 0
@@ -2136,14 +2156,17 @@ export class BatcherApp extends LitElement {
               ? html`
                   <button
                     @click="${this.handleStartResourceScan}"
-                    ?disabled="${this.isResourceScanning || (!this.resourceDirHandle && this.resourceFiles.length === 0)}"
+                    ?disabled="${this.isResourceScanning ||
+                    (!this.resourceDirHandle && this.resourceFiles.length === 0)}"
                     class="flex-1 md:flex-initial w-full md:w-auto px-8 py-3 bg-linear-to-r from-emerald-600 via-teal-600 to-cyan-600 hover:from-emerald-500 hover:via-teal-500 hover:to-cyan-500 disabled:opacity-30 disabled:cursor-not-allowed text-white font-bold text-sm tracking-wide rounded-xl border border-white/20 transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md shrink-0"
                   >
                     ${this.isResourceScanning
                       ? html`
                           <i class="fa-solid fa-spinner fa-spin text-xs"></i>
                           <span
-                            >${this.currentLang === "ko" ? "파일 검사 중..." : "Scanning files..."}</span
+                            >${this.currentLang === "ko"
+                              ? "파일 검사 중..."
+                              : "Scanning files..."}</span
                           >
                         `
                       : html`

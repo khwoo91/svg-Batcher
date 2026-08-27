@@ -67,74 +67,41 @@ export class AlertModal extends LitElement {
             ? "max-w-lg"
             : "max-w-md"} w-full max-h-[92vh] flex flex-col overflow-hidden shadow-2xl animate-in fade-in zoom-in-95 duration-200 border border-slate-800 bg-slate-900/95 my-auto relative"
         >
-          ${isSupportOrSuccess
-            ? html`
-                <!-- Top Centered Profile Avatar & Close Button -->
-                <div
-                  class="pt-6 pb-3 px-6 flex flex-col items-center justify-center relative bg-slate-950/40 border-b border-slate-800/60"
-                >
-                  <button
-                    @click="${this.handleClose}"
-                    class="absolute top-4 right-4 w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 transition-colors cursor-pointer"
-                    title="${this.lang === "ko" ? "닫기" : "Close"}"
-                  >
-                    <i class="fa-solid fa-xmark text-base"></i>
-                  </button>
-
-                  <!-- Centered Circular Avatar -->
-                  <div
-                    class="relative w-16 h-16 rounded-full p-0.5 bg-linear-to-b from-amber-400 via-amber-500 to-slate-800 shadow-xl mb-2.5"
-                  >
-                    <img
-                      src="https://cdn.buymeacoffee.com/uploads/profile_pictures/2026/08/kTCBYoxK8PR8j3ov.jpg@1f.png"
-                      alt="playNolang"
-                      class="w-full h-full rounded-full object-cover bg-slate-900"
-                      onerror="this.src='/favicon-48x48.png'"
-                    />
-                    <span
-                      class="absolute -bottom-1 -right-1 bg-amber-500 text-[10px] w-5 h-5 rounded-full flex items-center justify-center text-slate-950 shadow-md font-bold"
-                      >☕</span
-                    >
-                  </div>
-
-                  <h3 class="text-sm sm:text-base font-bold text-slate-100 tracking-wide font-sans">
-                    ${defaultTitle}
-                  </h3>
-                </div>
-              `
-            : html`
-                <!-- Standard Modal Header for info/error -->
-                <div
-                  class="px-6 py-4 border-b border-slate-800 flex items-center justify-between shrink-0 bg-slate-950/50"
-                >
-                  <div class="flex items-center gap-3">
-                    <div
-                      class="w-10 h-10 rounded-2xl shrink-0 flex items-center justify-center ${this
-                        .type === "error"
-                        ? "bg-rose-500/10 text-rose-400 border border-rose-500/20"
-                        : "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20"}"
-                    >
-                      ${this.type === "error"
-                        ? html`<i class="fa-solid fa-circle-exclamation text-lg"></i>`
-                        : html`<i class="fa-solid fa-circle-info text-lg"></i>`}
-                    </div>
-                    <div>
-                      <h3
-                        class="text-sm sm:text-base font-bold text-slate-100 tracking-wide font-sans"
-                      >
-                        ${defaultTitle}
-                      </h3>
-                    </div>
-                  </div>
-                  <button
-                    @click="${this.handleClose}"
-                    class="w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 transition-colors cursor-pointer"
-                    title="${this.lang === "ko" ? "닫기" : "Close"}"
-                  >
-                    <i class="fa-solid fa-xmark text-sm"></i>
-                  </button>
-                </div>
-              `}
+          <!-- Modal Header -->
+          <div
+            class="px-6 py-4 border-b border-slate-800 flex items-center justify-between shrink-0 bg-slate-950/50"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-10 h-10 rounded-2xl shrink-0 flex items-center justify-center ${this.type ===
+                  "success" || this.type === "support"
+                  ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                  : this.type === "error"
+                    ? "bg-rose-500/10 text-rose-400 border border-rose-500/20"
+                    : "bg-indigo-500/10 text-indigo-400 border border-indigo-500/20"}"
+              >
+                ${this.type === "support"
+                  ? html`<span class="text-lg">☕</span>`
+                  : this.type === "success"
+                    ? html`<i class="fa-solid fa-circle-check text-lg text-emerald-400"></i>`
+                    : this.type === "error"
+                      ? html`<i class="fa-solid fa-circle-exclamation text-lg"></i>`
+                      : html`<i class="fa-solid fa-circle-info text-lg"></i>`}
+              </div>
+              <div>
+                <h3 class="text-sm sm:text-base font-bold text-slate-100 tracking-wide font-sans">
+                  ${defaultTitle}
+                </h3>
+              </div>
+            </div>
+            <button
+              @click="${this.handleClose}"
+              class="w-8 h-8 rounded-xl flex items-center justify-center text-slate-400 hover:text-slate-200 hover:bg-slate-800/80 transition-colors cursor-pointer"
+              title="${this.lang === "ko" ? "닫기" : "Close"}"
+            >
+              <i class="fa-solid fa-xmark text-sm"></i>
+            </button>
+          </div>
 
           <!-- Modal Body (Single Smooth Scroll Container) -->
           <div class="p-4 sm:p-5 overflow-y-auto flex-1 space-y-3.5 font-sans text-sm">
